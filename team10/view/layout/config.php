@@ -1,5 +1,6 @@
 <?php
-define('DB_SERVER', 'localhost:3307');           //define('常數名稱','常數值'); refence:P6-2
+//define('DB_SERVER', 'localhost:3307');           //define('常數名稱','常數值'); refence:P6-2
+    define('DB_SERVER', '172.17.0.1:3307');           //pls don't delete it! by Rui-Xin.
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '304db');                  //default NULL
 define('DB_NAME', 'csie112');
