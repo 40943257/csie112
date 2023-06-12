@@ -10,60 +10,13 @@
 <head>
   <title>機頁頁面詳細</title>
   <style>
-    header {
+    headerr {
+      /* 過去用頁首 */
       background-color: #0f94ed;
       color: #fff;
       padding: 10px;
     }
   </style>
-  <?php
-  define('DB_SERVER', 'localhost');           //define('常數名稱','常數值'); refence:P6-2
-  define('DB_USERNAME', 'root');
-  define('DB_PASSWORD', '');                  //default NULL
-  define('DB_NAME', 'csie112');
-
-  //connect to MySQL database
-  $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);       //i => improvement PDO => PHP Data Objects
-  // Check connection
-  if ($link->connect_error) {
-    die("連接失敗： " . $conn->connect_error);
-  }
-  // getAgencyInfo(目標欄位名稱,目標機構名稱,資料表)
-  function getAgencyInfo($info,$agencyName, $link) {
-    $sql = "SELECT $info FROM t10_agency_info WHERE t10_agency_info.name = '$agencyName'";
-    $result = $link->query($sql);
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo " " . $row[$info] . " ";
-        }
-    }
-  }
-  global $commentresult;
-  function wrstart($num_of_start) {
-    $stars = str_repeat("★", $num_of_start);
-    echo "<div class='col d-flex align-items-baseline'><h4>{$stars}</h4>";
-  }
-  function swapAgencycomment($agencyName, $link) {
-    global $commentresult;
-    $sql = "SELECT t10_comment.num_of_star,t10_comment.date,t10_comment.comment FROM t10_comment 
-        WHERE t10_comment.id = '$agencyName'";
-    $commentresult = $link->query($sql);
-  }
-  // 獲得機構名稱
-  $agency_id = isset($_GET['id']) ? $_GET['id'] : 1;
-  $sql = "SELECT name FROM t10_agency_info WHERE t10_agency_info.id = '  $agency_id'";
-  $result = $link->query($sql);
-  if ($result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-          echo " " . $row['name'] . " ";
-          $post_agency=$row['name'];
-      }
-  }
-  // $post_agency = '冒險者之家'; //過去初值設定
-
-  //  getAgencycomment('comment');
-  swapAgencycomment($post_agency, $link);
-  ?>
 </head>
 
 <body >
@@ -71,8 +24,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1>頁首預留區</h1>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <?php
+    include('./layout/header.php');
+    ?>
+    <?php
+      //connect to MySQL database
+      $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);       //i => improvement PDO => PHP Data Objects
+      // Check connection
+      if ($link->connect_error) {
+        die("連接失敗： " . $conn->connect_error);
+      }
+      // getAgencyInfo(目標欄位名稱,目標機構名稱,資料表)
+      function getAgencyInfo($info,$agencyName, $link) {
+        $sql = "SELECT $info FROM t10_agency_info WHERE t10_agency_info.name = '$agencyName'";
+        $result = $link->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo " " . $row[$info] . " ";
+            }
+        }
+      }
+      global $commentresult;
+      function wrstart($num_of_start) {
+        $stars = str_repeat("★", $num_of_start);
+        echo "<div class='col d-flex align-items-baseline'><h4>{$stars}</h4>";
+      }
+      function swapAgencycomment($agencyName, $link) {
+        global $commentresult;
+        $sql = "SELECT t10_comment.num_of_star,t10_comment.date,t10_comment.comment FROM t10_comment 
+            WHERE t10_comment.id = '$agencyName'";
+        $commentresult = $link->query($sql);
+      }
+      // 獲得機構名稱
+      $agency_id = isset($_GET['id']) ? $_GET['id'] : 1;
+      $sql = "SELECT name FROM t10_agency_info WHERE t10_agency_info.id = '  $agency_id'";
+      $result = $link->query($sql);
+      if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+              echo " " . $row['name'] . " ";
+              $post_agency=$row['name'];
+          }
+      }
+      // $post_agency = '冒險者之家'; //過去初值設定
+
+      //  getAgencycomment('comment');
+      swapAgencycomment($post_agency, $link);
+      ?>
+  <!--                       頁首領域                -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   </header>
   <div class="container" style="padding-top:1cm;">
     <div class="row">
@@ -220,6 +219,9 @@
       </div>
     </div>
   </div>
+  <?php
+    include('./layout/footer.php');
+  ?>
 </body>
 
 </html>
