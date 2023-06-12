@@ -1,33 +1,4 @@
 <?php
-$content = '金雞母變賠錢貨，這是韓國企業龍頭三星電子（以下簡稱三星）的處境。身為締造全韓五分之一國內生產毛額（GDP）的最大財閥，三星近來不僅主力業務虧損，還繳出14年來最差單季獲利，這凸顯其「棄效率換市場」的後遺症。
-三星日前公布財報，今年第1季營業利益6400億韓元（約合新台幣147億元），比去年同期大跌95％，創14年來最差單季獲利。同期間，對手LG營業利益是三星2.3倍，來到1兆5千億韓元，這是14年來三星首次被LG超越。
-';
-// // 獲取當前網址
-// $currentUrl = $_SERVER['REQUEST_URI'];
-
-// // 解析網址
-// $parsedUrl = parse_url($currentUrl);
-
-// // 檢查是否存在查詢參數
-// $queryParams = [];
-// if (isset($parsedUrl['query'])) {
-//     // 解析查詢參數
-//     parse_str($parsedUrl['query'], $queryParams);
-// }
-
-// // 刪除 'page' 參數
-// unset($queryParams['page']);
-
-// // 重新構建網址
-// $newQuery = http_build_query($queryParams);
-// $newUrl = $parsedUrl['path'];
-
-// // 提取文件名
-// $fileName = pathinfo($parsedUrl['path'], PATHINFO_BASENAME);
-// echo $fileName;
-// $newUrl .= '?' . $newQuery;
-
-// 每頁顯示的資料數量
 $pageSize = 4;
 
 // 目前的頁碼
