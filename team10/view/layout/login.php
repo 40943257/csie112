@@ -1,4 +1,4 @@
-<div class="container py-5">
+<div class="container mb-3">
     <div class="row align-items-center justify-content-center">
         <div class="col-6">
             <div id="loginForm">
