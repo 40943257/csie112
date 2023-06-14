@@ -2,13 +2,13 @@
 // 計算資料的起始索引
 $startIndex = ($page - 1) * $pageSize;
 
-$sql = "SELECT id, name, address, detailed FROM t10_agency_info LIMIT $startIndex, $pageSize";
+$sql = "SELECT id, name, address, detailed FROM T10_agency_info LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
 
 foreach ($results as $result) {
   $id = $result["id"];
   $star = '無';
-  $sql = "SELECT ROUND(AVG(num_of_star), 1) as average_star FROM t10_comment WHERE id = $id";
+  $sql = "SELECT ROUND(AVG(num_of_star), 1) as average_star FROM T10_comment WHERE id = $id";
   $starResult = mysqli_query($conn, $sql);
   if ($starResult->num_rows > 0) {
     $starRow = $starResult->fetch_assoc();

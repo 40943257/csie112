@@ -12,7 +12,7 @@ $getParams = http_build_query($getParams);
 if ($getParams)
     $getParams = '&' . $getParams;
 
-$sql = "SELECT COUNT(*) as total FROM t10_agency_info";
+$sql = "SELECT COUNT(*) as total FROM T10_agency_info";
 $result = mysqli_query($conn, $sql);
 $countRow = $result->fetch_assoc();
 $totalCount = $countRow['total'];
