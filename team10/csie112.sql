@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： mariadb1
--- 產生時間： 2023 年 06 月 14 日 07:35
+-- 產生時間： 2023 年 06 月 14 日 09:15
 -- 伺服器版本： 10.7.8-MariaDB-1:10.7.8+maria~ubu2004
 -- PHP 版本： 8.0.15
 
@@ -168,9 +168,10 @@ CREATE TABLE `T10_user` (
 --
 
 INSERT INTO `T10_user` (`account`, `name`, `password`, `email`, `phone`) VALUES
-('123', 'megunin', '123', '123@456', '912345678'),
-('456', '惠惠', '456', '456@456', '987654321'),
-('user304', '$2y$10$VKoHKKZ.0nDexeae1V80nuxwo6vPSipwBzb6u5Tuv89Jcv4STWx/m', '一般使用者', 'user304@nfu.edu.tw', '304304304');
+('123', 'megunin', '$2y$10$aQBg7Jam9nREttoDCTcf9OrJqAzkybSZMGq5W7oOui5J2C0L2wVzi', '123@456', '912345678'),
+('456', '惠惠', '$2y$10$hzHf/8bRWv1qk.SKtmXa6.jL72ORsB6zwEOAnbvZgTAklLSfqSoaG', '456@456', '987654321'),
+('admin304', '預設管理者', '$2y$10$WxtywCMjdQJ0SA7zmKA0xeoeYNQLXGX9Mgq0A96E1obXKbbFOQt66', 'admin304@nfu', '(30)4304304'),
+('user304', '一般使用者', '$2y$10$uOBpv9ceLyfQiFCFCCKHQO9KIfKjNrnRddkggJseR6IO4PQq98yGK', 'user304@nfu', '(30)4304304');
 
 --
 -- 已傾印資料表的索引

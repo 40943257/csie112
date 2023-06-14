@@ -10,7 +10,7 @@ $tel=$_POST["tel"];
 //hash 19.1
 $password_hash=password_hash($_POST['password'],PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO T10_user (account, name, password, email, phone) VALUES ('{$account}', '{$password_hash}', '{$name}', '{$mail}', '{$tel}')";
+$sql = "INSERT INTO T10_user (account, name, password, email, phone) VALUES ('{$account}', '{$name}', '{$password_hash}', '{$mail}', '{$tel}')";
 
 if(mysqli_query($conn,$sql)){               //檢查錯誤
     function_alert("成功註冊!");
