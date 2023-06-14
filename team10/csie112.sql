@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： mariadb1
--- 產生時間： 2023 年 06 月 12 日 12:59
+-- 產生時間： 2023 年 06 月 14 日 07:35
 -- 伺服器版本： 10.7.8-MariaDB-1:10.7.8+maria~ubu2004
 -- PHP 版本： 8.0.15
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `t10_agency_collect`
+-- 資料表結構 `T10_agency_collect`
 --
 
-CREATE TABLE `t10_agency_collect` (
+CREATE TABLE `T10_agency_collect` (
   `id` int(25) NOT NULL,
   `admission_type` varchar(25) NOT NULL,
   `money_flag` tinyint(1) NOT NULL,
@@ -37,10 +37,10 @@ CREATE TABLE `t10_agency_collect` (
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `t10_agency_info`
+-- 資料表結構 `T10_agency_info`
 --
 
-CREATE TABLE `t10_agency_info` (
+CREATE TABLE `T10_agency_info` (
   `id` int(25) NOT NULL,
   `account` varchar(25) NOT NULL,
   `name` varchar(25) NOT NULL,
@@ -56,10 +56,10 @@ CREATE TABLE `t10_agency_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 傾印資料表的資料 `t10_agency_info`
+-- 傾印資料表的資料 `T10_agency_info`
 --
 
-INSERT INTO `t10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `care_type`, `start`, `end`, `people`, `detailed`, `image_src`, `review`) VALUES
+INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `care_type`, `start`, `end`, `people`, `detailed`, `image_src`, `review`) VALUES
 (1, '', '冒險者之家', '王都東區', 912345678, '', 6, 12, 123, '惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠', 'D:\\xampp\\htdocs\\ggit\\agency', 1),
 (2, '', '冒險者公會', '摩根帝國', 987654321, '', 14, 16, 30, '', '', 0),
 (4, 'account1', 'Agency 1', 'Address 1', 1146259078, '', 89, 114, 9, 'Detailed info for Agency 1', 'image1.jpg', 1),
@@ -116,10 +116,10 @@ INSERT INTO `t10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `car
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `t10_comment`
+-- 資料表結構 `T10_comment`
 --
 
-CREATE TABLE `t10_comment` (
+CREATE TABLE `T10_comment` (
   `account` varchar(25) NOT NULL,
   `num_of_star` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -128,10 +128,10 @@ CREATE TABLE `t10_comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 傾印資料表的資料 `t10_comment`
+-- 傾印資料表的資料 `T10_comment`
 --
 
-INSERT INTO `t10_comment` (`account`, `num_of_star`, `date`, `comment`, `id`) VALUES
+INSERT INTO `T10_comment` (`account`, `num_of_star`, `date`, `comment`, `id`) VALUES
 ('123', 5, '2023-05-17 08:57:47', '', 1),
 ('4', 2, '2023-05-17 07:38:49', '惠惠', 2),
 ('456', 5, '2023-05-16 09:59:27', '惠惠惠惠', 1),
@@ -141,10 +141,10 @@ INSERT INTO `t10_comment` (`account`, `num_of_star`, `date`, `comment`, `id`) VA
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `t10_cooperative`
+-- 資料表結構 `T10_cooperative`
 --
 
-CREATE TABLE `t10_cooperative` (
+CREATE TABLE `T10_cooperative` (
   `id` int(25) NOT NULL,
   `government` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -152,39 +152,40 @@ CREATE TABLE `t10_cooperative` (
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `t10_user`
+-- 資料表結構 `T10_user`
 --
 
-CREATE TABLE `t10_user` (
-  `account` varchar(25) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `phone` bigint(20) NOT NULL
+CREATE TABLE `T10_user` (
+  `account` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- 傾印資料表的資料 `t10_user`
+-- 傾印資料表的資料 `T10_user`
 --
 
-INSERT INTO `t10_user` (`account`, `name`, `password`, `email`, `phone`) VALUES
-('123', 'megunin', '123', '123@456', 912345678),
-('456', '惠惠', '456', '456@456', 987654321);
+INSERT INTO `T10_user` (`account`, `name`, `password`, `email`, `phone`) VALUES
+('123', 'megunin', '123', '123@456', '912345678'),
+('456', '惠惠', '456', '456@456', '987654321'),
+('user304', '$2y$10$VKoHKKZ.0nDexeae1V80nuxwo6vPSipwBzb6u5Tuv89Jcv4STWx/m', '一般使用者', 'user304@nfu.edu.tw', '304304304');
 
 --
 -- 已傾印資料表的索引
 --
 
 --
--- 資料表索引 `t10_agency_info`
+-- 資料表索引 `T10_agency_info`
 --
-ALTER TABLE `t10_agency_info`
+ALTER TABLE `T10_agency_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `t10_user`
+-- 資料表索引 `T10_user`
 --
-ALTER TABLE `t10_user`
+ALTER TABLE `T10_user`
   ADD PRIMARY KEY (`account`);
 
 --
@@ -192,9 +193,9 @@ ALTER TABLE `t10_user`
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `t10_agency_info`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `T10_agency_info`
 --
-ALTER TABLE `t10_agency_info`
+ALTER TABLE `T10_agency_info`
   MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
