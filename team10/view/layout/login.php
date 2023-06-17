@@ -4,11 +4,11 @@
             <div id="loginForm">
                 <form method="post" action="./loginExe.php">
                     <div class="mb-3">
-                        <label for="Account" class="form-label">帳號</label>
+                        <label for="account" class="form-label">帳號</label>
                         <input type="account" class="form-control" name = "account" id="account" required>
                     </div>
                     <div class="mb-3">
-                        <label for="Password" class="form-label">密碼</label>
+                        <label for="password" class="form-label">密碼</label>
                         <input type="password" class="form-control" name = "password" id="password" required>
                     </div>
                     <div class="mb-3 form-check">
