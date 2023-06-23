@@ -15,7 +15,7 @@ if ($getParams)
 
 $sql = "SELECT COUNT(*) as total FROM T10_agency_info";
 
-if ($flag != "")
+if ($selectWithGov != "")
   $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
 
 $sql .= " WHERE 1 = 1";

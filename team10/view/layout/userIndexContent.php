@@ -4,12 +4,12 @@ $startIndex = ($page - 1) * $pageSize;
 
 $sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
-if ($flag != "")
+if ($selectWithGov != "")
   $sql .= ", GROUP_CONCAT(T10_cooperative.government SEPARATOR ', ') AS governments";
 
 $sql .= " FROM T10_agency_info";
 
-if ($flag != "")
+if ($selectWithGov != "")
   $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
   
 $sql .= " WHERE T10_agency_info.review = 1";
@@ -17,7 +17,7 @@ $sql .= " WHERE T10_agency_info.review = 1";
 if ($term != "")
   $sql .= " AND " . $term;
 
-if ($flag != "")
+if ($selectWithGov != "")
   $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
 $sql .= " ORDER BY T10_agency_info.id DESC LIMIT $startIndex, $pageSize";

@@ -4,26 +4,26 @@ $startIndex = ($page - 1) * $pageSize;
 
 $sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
-if ($flag != "")
+if ($selectWithGov != "")
   $sql .= ", GROUP_CONCAT(T10_cooperative.government SEPARATOR ', ') AS governments";
 
 $sql .= " FROM T10_agency_info";
 
-if ($flag != "")
+if ($selectWithGov != "")
   $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
 
 $sql .= " WHERE 1 =1";
 
 if ($fileName == 'myAgency.php')
   $sql .= " AND T10_agency_info.account = '$account'";
-else 
+else
   $sql .= " AND T10_agency_info.review = '1'";
 
-if($term != "")
-    $sql .= " AND " . $term;
+if ($term != "")
+  $sql .= " AND " . $term;
 
-    if ($flag != "")
-    $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
+if ($selectWithGov != "")
+  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
 $sql .= " ORDER BY id DESC LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
