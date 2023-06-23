@@ -4,7 +4,7 @@ $conn = require_once "config.php";
 session_start();
 
 //true | false
-$isLogin = true;
+$isLogin = false;
 $user = 'user';
 if (isset($_SESSION["account"])) {
     $isLogin = true;
@@ -76,7 +76,7 @@ $newUrl .= '?' . $newQuery;
                         echo '<a class="btn btn-primary mx-1 my-1';
                         if ($fileName == 'agencyInfo.php')
                             echo ' active';
-                        echo '" href="./agencyInfo.php" id="myOrganization">我的機構資訊</a>';
+                        echo '" href="./agencyInfo.php" id="agencyInfo">我的機構資訊</a>';
                         echo '</li>';
                     }
                 }
@@ -88,9 +88,9 @@ $newUrl .= '?' . $newQuery;
                     if ($user == 'user') {
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1';
-                        if ($fileName == 'userInfo.php')
+                        if ($fileName == 'updateUserInfo.php')
                             echo ' active';
-                        echo '" href="userInfo.php" id="myInstitution">個人資訊</a>';
+                        echo '" href="updateUserInfo.php" id="updateUserInfo">個人資訊</a>';
                         echo '</li>';
                     }
                     echo '<li class="nav-item">';
@@ -99,15 +99,15 @@ $newUrl .= '?' . $newQuery;
                 } else {
                     echo '<li class="nav-item">';
                     echo '<a class="btn btn-primary mx-1 my-1';
-                    if ($fileName == 'login.php')
+                    if ($fileName == 'loginpage.php')
                         echo ' active';
-                    echo '" href="login.php" id="login">登入</a>';
+                    echo '" href="loginpage.php" id="loginpage">登入</a>';
                     echo '</li>';
                     echo '<li class="nav-item">';
                     echo '<a class="btn btn-primary mx-1 my-1';
-                    if ($fileName == 'sign.php')
+                    if ($fileName == 'signupPage.php')
                         echo ' active';
-                    echo '" href="sign.php" id="signUp">創建帳號</a>';
+                    echo '" href="signupPage.php" id="signupPage">創建帳號</a>';
                     echo '</li>';
                 }
                 ?>
