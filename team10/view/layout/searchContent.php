@@ -15,13 +15,13 @@ if ($getParams)
 $sql = "SELECT COUNT(*) as total FROM T10_agency_info WHERE 1 = 1";
 include('./layout/searchGet.php');
 
-if($term != "")
+if ($term != "")
     $sql .= " AND " . $term;
 
-if($fileName == 'myAgency.php')
+if ($fileName == 'myAgency.php')
     $sql .= " AND account = '$account'";
 
-if($fileName == "view" || $fileName == "index.php")
+if ($fileName == "view" || $fileName == "index.php")
     $sql .= " AND review = '1'";
 
 $result = mysqli_query($conn, $sql);
@@ -32,6 +32,8 @@ $totalCount = $countRow['total'];
 $totalPages = ceil($totalCount / $pageSize);
 $startPage = max(1, $page - 2);
 $endPage = min($totalPages, $page + 2);
+
+include('./layout/gov.php');
 ?>
 
 <div class="container">
@@ -87,180 +89,18 @@ $endPage = min($totalPages, $page + 2);
                 縣市
             </button>
             <ul class="dropdown-menu">
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="KeelungCity" name="KeelungCity">
-                    <label class="form-check-label" for="KeelungCity">
-                        基隆市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="NewTaipeiCity" name="NewTaipeiCity">
-                    <label class="form-check-label" for="NewTaipeiCity">
-                        新北市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="TaipeiCity" name="TaipeiCity">
-                    <label class="form-check-label" for="TaipeiCity">
-                        台北市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="TaoyuanCity" name="TaoyuanCity">
-                    <label class="form-check-label" for="TaoyuanCity">
-                        桃園市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="HsinchuCounty" name="HsinchuCounty">
-                    <label class="form-check-label" for="HsinchuCounty">
-                        新竹縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="HsinchuCity" name="HsinchuCity">
-                    <label class="form-check-label" for="HsinchuCity">
-                        新竹市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="MiaoliCity" name="MiaoliCity">
-                    <label class="form-check-label" for="MiaoliCity">
-                        苗栗市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="MiaoliCounty" name="MiaoliCounty">
-                    <label class="form-check-label" for="MiaoliCounty">
-                        苗栗縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="TaichungCity" name="TaichungCity">
-                    <label class="form-check-label" for="TaichungCity">
-                        台中市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="ChanghuaCounty" name="ChanghuaCounty">
-                    <label class="form-check-label" for="ChanghuaCounty">
-                        彰化縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="ChanghuaCity" name="ChanghuaCity">
-                    <label class="form-check-label" for="ChanghuaCity">
-                        彰化市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="NantouCity" name="NantouCity">
-                    <label class="form-check-label" for="NantouCity">
-                        南投市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="NantouCounty" name="NantouCounty">
-                    <label class="form-check-label" for="NantouCounty">
-                        南投縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="YunlinCounty" name="YunlinCounty">
-                    <label class="form-check-label" for="YunlinCounty">
-                        雲林縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="ChiayiCounty" name="ChiayiCounty">
-                    <label class="form-check-label" for="ChiayiCounty">
-                        嘉義縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="ChiayiCity" name="ChiayiCity">
-                    <label class="form-check-label" for="ChiayiCity">
-                        嘉義市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="TainanCity" name="TainanCity">
-                    <label class="form-check-label" for="TainanCity">
-                        台南市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="KaohsiungCity" name="KaohsiungCity">
-                    <label class="form-check-label" for="KaohsiungCity">
-                        高雄市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="PingtungCounty" name="PingtungCounty">
-                    <label class="form-check-label" for="PingtungCounty">
-                        屏東縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="PingtungCity" name="PingtungCity">
-                    <label class="form-check-label" for="PingtungCity">
-                        屏東市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="YilanCounty" name="YilanCounty">
-                    <label class="form-check-label" for="YilanCounty">
-                        宜蘭縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="YilanCity" name="YilanCity">
-                    <label class="form-check-label" for="YilanCity">
-                        宜蘭市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="HualienCounty" name="HualienCounty">
-                    <label class="form-check-label" for="HualienCounty">
-                        花蓮縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="HualienCity" name="HualienCity">
-                    <label class="form-check-label" for="HualienCity">
-                        花蓮市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="TaitungCity" name="TaitungCity">
-                    <label class="form-check-label" for="TaitungCity">
-                        台東市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="TaitungCounty" name="TaitungCounty">
-                    <label class="form-check-label" for="TaitungCounty">
-                        台東縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="PenghuCounty" name="PenghuCounty">
-                    <label class="form-check-label" for="PenghuCounty">
-                        澎湖縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="KinmenCounty" name="KinmenCounty">
-                    <label class="form-check-label" for="KinmenCounty">
-                        金門縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="Matsu" name="Matsu">
-                    <label class="form-check-label" for="Matsu">
-                        馬祖
-                    </label>
-                </div>
+                <?php
+                for ($i = 0; $i < count($gov); $i += 2) {
+                    echo "
+                        <div class='form-check mx-1'>
+                        <input class='form-check-input' type='checkbox' id='" . $gov[$i + 1] . "' name='" . $gov[$i + 1] . "'>
+                        <label class='form-check-label' for='" . $gov[$i + 1] . "'>
+                            " . $gov[$i] . "
+                        </label>
+                    </div>
+                        ";
+                }
+                ?>
             </ul>
         </div>
 
@@ -275,180 +115,18 @@ $endPage = min($totalPages, $page + 2);
                 合作縣市
             </button>
             <ul class="dropdown-menu">
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withKeelungCity" name="withKeelungCity">
-                    <label class="form-check-label" for="withKeelungCity">
-                        基隆市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withNewTaipeiCity" name="withNewTaipeiCity">
-                    <label class="form-check-label" for="withNewTaipeiCity">
-                        新北市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withTaipeiCity" name="withTaipeiCity">
-                    <label class="form-check-label" for="withTaipeiCity">
-                        台北市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withTaoyuanCity" name="withTaoyuanCity">
-                    <label class="form-check-label" for="withTaoyuanCity">
-                        桃園市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withHsinchuCounty" name="withHsinchuCounty">
-                    <label class="form-check-label" for="withHsinchuCounty">
-                        新竹縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withHsinchuCity" name="withHsinchuCity">
-                    <label class="form-check-label" for="withHsinchuCity">
-                        新竹市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withMiaoliCity" name="withMiaoliCity">
-                    <label class="form-check-label" for="withMiaoliCity">
-                        苗栗市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withMiaoliCounty" name="withMiaoliCounty">
-                    <label class="form-check-label" for="withMiaoliCounty">
-                        苗栗縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withTaichungCity" name="withTaichungCity">
-                    <label class="form-check-label" for="withTaichungCity">
-                        台中市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withChanghuaCounty" name="withChanghuaCounty">
-                    <label class="form-check-label" for="withChanghuaCounty">
-                        彰化縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withChanghuaCity" name="withChanghuaCity">
-                    <label class="form-check-label" for="withChanghuaCity">
-                        彰化市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withNantouCity" name="withNantouCity">
-                    <label class="form-check-label" for="withNantouCity">
-                        南投市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withNantouCounty" name="withNantouCounty">
-                    <label class="form-check-label" for="withNantouCounty">
-                        南投縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withYunlinCounty" name="withYunlinCounty">
-                    <label class="form-check-label" for="withYunlinCounty">
-                        雲林縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withChiayiCounty" name="withChiayiCounty">
-                    <label class="form-check-label" for="withChiayiCounty">
-                        嘉義縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withChiayiCity" name="withChiayiCity">
-                    <label class="form-check-label" for="withChiayiCity">
-                        嘉義市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withTainanCity" name="withTainanCity">
-                    <label class="form-check-label" for="withTainanCity">
-                        台南市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withKaohsiungCity" name="withKaohsiungCity">
-                    <label class="form-check-label" for="withKaohsiungCity">
-                        高雄市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withPingtungCounty" name="withPingtungCounty">
-                    <label class="form-check-label" for="withPingtungCounty">
-                        屏東縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withPingtungCity" name="withPingtungCity">
-                    <label class="form-check-label" for="withPingtungCity">
-                        屏東市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withYilanCounty" name="withYilanCounty">
-                    <label class="form-check-label" for="withYilanCounty">
-                        宜蘭縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withYilanCity" name="withYilanCity">
-                    <label class="form-check-label" for="withYilanCity">
-                        宜蘭市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withHualienCounty" name="withHualienCounty">
-                    <label class="form-check-label" for="withHualienCounty">
-                        花蓮縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withHualienCity" name="withHualienCity">
-                    <label class="form-check-label" for="withHualienCity">
-                        花蓮市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withTaitungCity" name="withTaitungCity">
-                    <label class="form-check-label" for="withTaitungCity">
-                        台東市
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withTaitungCounty" name="withTaitungCounty">
-                    <label class="form-check-label" for="withTaitungCounty">
-                        台東縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withPenghuCounty" name="withPenghuCounty">
-                    <label class="form-check-label" for="withPenghuCounty">
-                        澎湖縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withKinmenCounty" name="withKinmenCounty">
-                    <label class="form-check-label" for="withKinmenCounty">
-                        金門縣
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="withMatsu" name="withMatsu">
-                    <label class="form-check-label" for="withMatsu">
-                        馬祖
-                    </label>
-                </div>
+                <?php
+                for ($i = 0; $i < count($gov); $i += 2) {
+                    echo "
+                        <div class='form-check mx-1'>
+                        <input class='form-check-input' type='checkbox' id='with" . $gov[$i + 1] . "' name='with" . $gov[$i + 1] . "'>
+                        <label class='form-check-label' for='with" . $gov[$i + 1] . "'>
+                            " . $gov[$i] . "
+                        </label>
+                    </div>
+                        ";
+                }
+                ?>
             </ul>
         </div>
 
