@@ -11,6 +11,7 @@ if (isset($_SESSION["account"])) {
     if ($_SESSION["account"] == 'root') {
         $user = 'root';
     }
+    $account = $_SESSION["account"];
 }
 
 // 獲取當前網址
@@ -74,9 +75,9 @@ $newUrl .= '?' . $newQuery;
                     } else {
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1';
-                        if ($fileName == 'agencyInfo.php')
+                        if ($fileName == 'myAgency.php')
                             echo ' active';
-                        echo '" href="./agencyInfo.php" id="agencyInfo">我的機構資訊</a>';
+                        echo '" href="./myAgency.php" id="myAgency">我的機構</a>';
                         echo '</li>';
                     }
                 }
@@ -88,9 +89,9 @@ $newUrl .= '?' . $newQuery;
                     if ($user == 'user') {
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1';
-                        if ($fileName == 'updateUserInfo.php')
+                        if ($fileName == 'userInfo.php')
                             echo ' active';
-                        echo '" href="updateUserInfo.php" id="updateUserInfo">個人資訊</a>';
+                        echo '" href="userInfo.php" id="userInfo.php">個人資訊</a>';
                         echo '</li>';
                     }
                     echo '<li class="nav-item">';
@@ -99,9 +100,9 @@ $newUrl .= '?' . $newQuery;
                 } else {
                     echo '<li class="nav-item">';
                     echo '<a class="btn btn-primary mx-1 my-1';
-                    if ($fileName == 'loginpage.php')
+                    if ($fileName == 'loginPage.php')
                         echo ' active';
-                    echo '" href="loginpage.php" id="loginpage">登入</a>';
+                    echo '" href="loginPage.php" id="loginPage">登入</a>';
                     echo '</li>';
                     echo '<li class="nav-item">';
                     echo '<a class="btn btn-primary mx-1 my-1';

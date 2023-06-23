@@ -13,6 +13,10 @@ if ($getParams)
     $getParams = '&' . $getParams;
 
 $sql = "SELECT COUNT(*) as total FROM T10_agency_info";
+
+if($fileName == 'myAgency.php')
+    $sql .= " WHERE account = '$account'";
+
 $result = mysqli_query($conn, $sql);
 $countRow = $result->fetch_assoc();
 $totalCount = $countRow['total'];
@@ -602,7 +606,7 @@ $endPage = min($totalPages, $page + 2);
         if ($user == 'user') {
             if ($fileName == 'view' || $fileName == 'index.php')
                 include('./layout/userIndexContent.php');
-            else if ($fileName == 'agencyInfo.php') {
+            else if ($fileName == 'myAgency.php') {
                 include('./layout/rootIndex_agencyContent.php');
                 echo '  
                 <div class="mx-1 my-1 d-flex align-items-center justify-content-center h-100">
@@ -637,9 +641,9 @@ $endPage = min($totalPages, $page + 2);
             for ($i = $startPage; $i <= $endPage && $i <= $totalPages; $i++) {
                 echo '
                         <li class="page-item';
-                        if ($page == $i)
-                            echo ' active';
-                        echo '">
+                if ($page == $i)
+                    echo ' active';
+                echo '">
                             <a class="page-link" href= "?page=' . $i . $getParams . '">' . $i . '</a>
                         </li>
                     ';

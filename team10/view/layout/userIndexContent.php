@@ -18,7 +18,7 @@ foreach ($results as $result) {
   }
 
   echo '
-    <a href="agency.php?id='. $result["id"] . '">
+    <a href="detailed.php?id='. $result["id"] . '">
       <div class="row mx-1 my-1 border border-dark align-items-center justify-content-center">
         <div class="col-md-2 col-12">
           <div class="ratio ratio-16x9">
