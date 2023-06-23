@@ -2,11 +2,18 @@
 // 計算資料的起始索引
 $startIndex = ($page - 1) * $pageSize;
 
-$sql = "SELECT id, name, address, detailed FROM T10_agency_info 
-  WHERE account = '$account'
-  ORDER BY id DESC LIMIT $startIndex, $pageSize";
-$results = mysqli_query($conn, $sql);
+$sql = "SELECT id, name, address, detailed FROM T10_agency_info WHERE 1 = 1";
 
+if ($fileName == 'myAgency.php')
+  $sql .= " AND account = '$account'";
+else 
+  $sql .= " AND review = '1'";
+
+if($term != "")
+    $sql .= " AND " . $term;
+
+$sql .= " ORDER BY id DESC LIMIT $startIndex, $pageSize";
+$results = mysqli_query($conn, $sql);
 foreach ($results as $result) {
   $id = $result["id"];
   $star = '無';

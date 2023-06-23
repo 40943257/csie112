@@ -8,7 +8,7 @@ $isLogin = false;
 $user = 'user';
 if (isset($_SESSION["account"])) {
     $isLogin = true;
-    if ($_SESSION["account"] == 'root') {
+    if ($_SESSION["account"] == 'admin304') {
         $user = 'root';
     }
     $account = $_SESSION["account"];
@@ -65,19 +65,18 @@ $newUrl .= '?' . $newQuery;
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <?php
                 if ($isLogin) {
+                    echo '<li class="nav-item">';
+                    echo '<a class="btn btn-primary mx-1 my-1';
+                    if ($fileName == 'myAgency.php')
+                        echo ' active';
+                    echo '" href="./myAgency.php" id="myAgency">我的機構</a>';
+                    echo '</li>';
                     if ($user == 'root') {
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1" href="#" id="check">審核</a>';
                         echo '</li>';
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1" href="#" id="excelImport">excel匯入資料</a>';
-                        echo '</li>';
-                    } else {
-                        echo '<li class="nav-item">';
-                        echo '<a class="btn btn-primary mx-1 my-1';
-                        if ($fileName == 'myAgency.php')
-                            echo ' active';
-                        echo '" href="./myAgency.php" id="myAgency">我的機構</a>';
                         echo '</li>';
                     }
                 }
