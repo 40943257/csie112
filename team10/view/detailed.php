@@ -36,7 +36,7 @@
       }
       // getAgencyInfo(目標欄位名稱,目標機構名稱,資料表)
       function getAgencyInfo($info,$agencyName, $link) {
-        $sql = "SELECT $info FROM t10_agency_info WHERE t10_agency_info.name = '$agencyName'";
+        $sql = "SELECT $info FROM T10_agency_info WHERE T10_agency_info.name = '$agencyName'";
         $result = $link->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -51,13 +51,13 @@
       }
       function swapAgencycomment($agencyName, $link) {
         global $commentresult;
-        $sql = "SELECT t10_comment.num_of_star,t10_comment.date,t10_comment.comment FROM t10_comment 
-            WHERE t10_comment.id = '$agencyName'";
+        $sql = "SELECT T10_comment.num_of_star,T10_comment.date,T10_comment.comment FROM T10_comment 
+            WHERE T10_comment.id = '$agencyName'";
         $commentresult = $link->query($sql);
       }
       // 獲得機構名稱
       $agency_id = isset($_GET['id']) ? $_GET['id'] : 1;
-      $sql = "SELECT name FROM t10_agency_info WHERE t10_agency_info.id = '  $agency_id'";
+      $sql = "SELECT name FROM T10_agency_info WHERE T10_agency_info.id = '  $agency_id'";
       $result = $link->query($sql);
       if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
@@ -83,7 +83,7 @@
         <!-- 頁數按鈕 -->
         <?php
         //獲取總筆數
-          $totalCountQuery = "SELECT COUNT(*) AS total FROM t10_agency_info WHERE id = $agency_id";
+          $totalCountQuery = "SELECT COUNT(*) AS total FROM T10_agency_info WHERE id = $agency_id";
           $totalCountResult = $link->query($totalCountQuery);
           $totalCountRow = $totalCountResult->fetch_assoc();
           $totalCount = $totalCountRow['total'];

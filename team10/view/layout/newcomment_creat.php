@@ -19,7 +19,7 @@ $new_comment = isset($_GET['new']) ? $_GET['new'] : 1;
 $itemsPerPage = 2;
 $offset = ($page - 1) * $itemsPerPage;
 //獲取總筆數
-$totalCountQuery = "SELECT COUNT(*) AS total FROM t10_comment WHERE id = $agency_id";
+$totalCountQuery = "SELECT COUNT(*) AS total FROM T10_comment WHERE id = $agency_id";
 $totalCountResult = $link->query($totalCountQuery);
 $totalCountRow = $totalCountResult->fetch_assoc();
 $totalCount = $totalCountRow['total'];
@@ -27,11 +27,11 @@ $totalPages = ceil($totalCount / $itemsPerPage);
 // 限制查詢結果
 if($new_comment==0)
 {
-  $query = "SELECT * FROM t10_comment inner join t10_user on t10_comment.account = t10_user.account WHERE id = $agency_id ORDER BY num_of_star DESC LIMIT $offset, $itemsPerPage ";//改機構位置
+  $query = "SELECT * FROM T10_comment inner join T10_user on T10_comment.account = T10_user.account WHERE id = $agency_id ORDER BY num_of_star DESC LIMIT $offset, $itemsPerPage ";//改機構位置
 }
 else
 {
-  $query = "SELECT * FROM t10_comment inner join t10_user on t10_comment.account = t10_user.account WHERE id = $agency_id ORDER BY date DESC LIMIT $offset, $itemsPerPage ";//改機構位置
+  $query = "SELECT * FROM T10_comment inner join T10_user on T10_comment.account = T10_user.account WHERE id = $agency_id ORDER BY date DESC LIMIT $offset, $itemsPerPage ";//改機構位置
 }
 $result = $link->query($query);
 /*過去圖片紀錄      <div class='col-4'>
