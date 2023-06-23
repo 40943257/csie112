@@ -1,4 +1,5 @@
 <?php
+include('./layout/searchGet.php');
 $pageSize = 4;
 
 // 目前的頁碼
@@ -12,18 +13,22 @@ $getParams = http_build_query($getParams);
 if ($getParams)
     $getParams = '&' . $getParams;
 
-$sql = "SELECT COUNT(*) as total FROM T10_agency_info WHERE 1 = 1";
-include('./layout/searchGet.php');
+$sql = "SELECT COUNT(*) as total FROM T10_agency_info";
+
+if ($flag != "")
+  $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
+
+$sql .= " WHERE 1 = 1";
 
 if ($term != "")
     $sql .= " AND " . $term;
 
 if ($fileName == 'myAgency.php')
-    $sql .= " AND account = '$account'";
+    $sql .= " AND T10_agency_info.account = '$account'";
 
 if ($fileName == "view" || $fileName == "index.php")
-    $sql .= " AND review = '1'";
-
+    $sql .= " AND T10_agency_info.review = '1'";
+  
 $result = mysqli_query($conn, $sql);
 $countRow = $result->fetch_assoc();
 $totalCount = $countRow['total'];
@@ -32,8 +37,6 @@ $totalCount = $countRow['total'];
 $totalPages = ceil($totalCount / $pageSize);
 $startPage = max(1, $page - 2);
 $endPage = min($totalPages, $page + 2);
-
-include('./layout/gov.php');
 ?>
 
 <div class="container">

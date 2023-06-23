@@ -2,15 +2,28 @@
 // 計算資料的起始索引
 $startIndex = ($page - 1) * $pageSize;
 
-$sql = "SELECT id, name, address, detailed FROM T10_agency_info WHERE 1 = 1";
+$sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
+
+if ($flag != "")
+  $sql .= ", GROUP_CONCAT(T10_cooperative.government SEPARATOR ', ') AS governments";
+
+$sql .= " FROM T10_agency_info";
+
+if ($flag != "")
+  $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
+
+$sql .= " WHERE 1 =1";
 
 if ($fileName == 'myAgency.php')
-  $sql .= " AND account = '$account'";
+  $sql .= " AND T10_agency_info.account = '$account'";
 else 
-  $sql .= " AND review = '1'";
+  $sql .= " AND T10_agency_info.review = '1'";
 
 if($term != "")
     $sql .= " AND " . $term;
+
+    if ($flag != "")
+    $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
 $sql .= " ORDER BY id DESC LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
