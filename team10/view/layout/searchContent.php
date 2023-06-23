@@ -298,7 +298,7 @@ $endPage = min($totalPages, $page + 2);
                 include('./layout/rootIndex_agencyContent.php');
                 echo '  
                 <div class="mx-1 my-1 d-flex align-items-center justify-content-center h-100">
-                    <button type="button" class="btn btn-success my-1" onclick="location.href=\'add\'">新增</button>
+                    <button type="button" class="btn btn-success my-1" onclick="location.href=\'myAddAgenPage.php\'">新增</button>
                 </div>
             ';
             }
@@ -307,7 +307,7 @@ $endPage = min($totalPages, $page + 2);
                 include('./layout/rootIndex_agencyContent.php');
                 echo '  
                 <div class="mx-1 my-1 d-flex align-items-center justify-content-center h-100">
-                    <button type="button" class="btn btn-success my-1" onclick="location.href=\'add\'">新增</button>
+                    <button type="button" class="btn btn-success my-1" onclick="location.href=\'myAddAgenPage.php\'">新增</button>
                 </div>
             ';
             }

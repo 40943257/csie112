@@ -20,3 +20,25 @@ if($selectWithGov != "") {
     $selectWithGov .= ")";
     $term .= " AND " . $selectWithGov;
 }
+
+
+$selectAges = "";
+for($i = 0; $i < 10; $i++) {
+    $start = $i * 10;
+    if($i != 0)
+        $start++;
+    $end = $i * 10 + 10;
+    $getAgeRange = "age_" . strval($start) . "_" . strval($end);
+    
+    if(isset($_GET[$getAgeRange])) {
+        if($selectAges == "")
+            $selectAges .= "((T10_agency_info.start <= $end AND T10_agency_info.end >= $start)";
+        else 
+            $selectAges .= " OR (T10_agency_info.start <= $end AND T10_agency_info.end >= $start)";
+    }
+}
+
+if($selectAges != "") {
+    $selectAges .= ")";
+    $term .= " AND " . $selectAges;
+}
