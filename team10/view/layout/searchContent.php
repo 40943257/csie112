@@ -117,7 +117,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 合作縣市
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" style="z-index: 1031;">
                 <?php
                 for ($i = 0; $i < count($gov); $i += 2) {
                     echo "
