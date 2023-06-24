@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： mariadb1
--- 產生時間： 2023 年 06 月 24 日 06:11
+-- 產生時間： 2023 年 06 月 24 日 06:14
 -- 伺服器版本： 10.7.8-MariaDB-1:10.7.8+maria~ubu2004
 -- PHP 版本： 8.0.15
 
@@ -51,7 +51,7 @@ CREATE TABLE `T10_agency_info` (
   `end` int(11) NOT NULL,
   `people` int(11) NOT NULL,
   `detailed` varchar(255) NOT NULL,
-  `image_src` varchar(255) NOT NULL,
+  `main_image` varchar(255) NOT NULL,
   `review` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -59,7 +59,7 @@ CREATE TABLE `T10_agency_info` (
 -- 傾印資料表的資料 `T10_agency_info`
 --
 
-INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `care_type`, `start`, `end`, `people`, `detailed`, `image_src`, `review`) VALUES
+INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `care_type`, `start`, `end`, `people`, `detailed`, `main_image`, `review`) VALUES
 (1, '', '冒險者之家', '王都東區', 912345678, 'stay', 6, 12, 123, '惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠', 'D:\\xampp\\htdocs\\ggit\\agency', 1),
 (2, '', '冒險者公會', '摩根帝國', 987654321, 'day', 14, 16, 30, '', '', 0),
 (4, 'account1', 'Agency 1', '嘉義縣', 1146259078, 'day', 89, 114, 9, 'Detailed info for Agency 1', 'image1.jpg', 1),
