@@ -45,7 +45,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 類型
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu z_index_1031">
                 <div class="form-check mx-1">
                     <input class="form-check-input" type="checkbox" id="day" name="day">
                     <label class="form-check-label" for="dayShape">
@@ -71,7 +71,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 長照對象
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu z_index_1031">
                 <div class="form-check mx-1">
                     <input class="form-check-input" type="checkbox" id="normal" name="normal">
                     <label class="form-check-label" for="normal">
@@ -91,7 +91,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 縣市
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu z_index_1031">
                 <?php
                 for ($i = 0; $i < count($gov); $i += 2) {
                     echo "
@@ -117,7 +117,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 合作縣市
             </button>
-            <ul class="dropdown-menu" style="z-index: 1031;">
+            <ul class="dropdown-menu z_index_1031">
                 <?php
                 for ($i = 0; $i < count($gov); $i += 2) {
                     echo "
@@ -137,7 +137,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 收治年紀
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu z_index_1031">
                 <div class="form-check mx-1">
                     <input class="form-check-input" type="checkbox" id="age_0_10" name="age_0_10">
                     <label class="form-check-label" for="age_0_10">
@@ -205,7 +205,7 @@ $endPage = min($totalPages, $page + 2);
             <button type="button" class="btn btn-primary dropdown-toggle mx-1 my-1" data-bs-toggle="dropdown" aria-expanded="false">
                 價錢
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu z_index_1031">
                 <div class="form-check mx-1">
                     <input class="form-check-input" type="checkbox" id="h_less_200" name="h_less_200">
                     <label class="form-check-label" for="h_less_200">
