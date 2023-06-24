@@ -80,3 +80,93 @@ if ($care_type != "") {
     $care_type .= ")";
     $term .= " AND " . $care_type;
 }
+
+$admission_types = "";
+if (isset($_GET["normal"])) {
+    if ($admission_types == "")
+        $admission_types .= "(T10_agency_collect.admission_type = 'normal'";
+    else
+        $admission_types .= " OR T10_agency_collect.admission_type = 'normal'";
+}
+if (isset($_GET["unnormal"])) {
+    if ($admission_types == "")
+        $admission_types .= "(T10_agency_collect.admission_type = 'unnormal'";
+    else
+        $admission_types .= " OR T10_agency_collect.admission_type = 'unnormal'";
+}
+
+if ($admission_types != "") {
+    $admission_types .= ")";
+    $term .= " AND " . $admission_types;
+}
+
+$moneys = "";
+for ($i = 200; $i <= 600; $i += 100) {
+    $min = 0;
+    $max = 0;
+    if ($i == 200) {
+        $min = "less";
+        $max = 200;
+    } else if ($i == 600) {
+        $min = "more";
+        $max = 501;
+    } else {
+        $min = $i - 99;
+        $max = $i;
+    }
+    $moneyGet = "h_" . $min . "_" . $max;
+    if (isset($_GET[$moneyGet])) {
+        if ($moneys == "") {
+            if ($min == "less")
+                $moneys .= "((T10_agency_collect.money_flag = 0 AND T10_agency_collect.money <= $max)";
+            else if ($min == "more")
+                $moneys .= "((T10_agency_collect.money_flag = 0 AND T10_agency_collect.money >= $max)";
+            else
+                $moneys .= "((T10_agency_collect.money_flag = 0 AND T10_agency_collect.money >= $min AND T10_agency_collect.money <= $max)";
+        } else {
+            if ($min == "less")
+                $moneys .= " OR (T10_agency_collect.money_flag = 0 AND T10_agency_collect.money <= $max)";
+            else if ($min == "more")
+                $moneys .= " OR (T10_agency_collect.money_flag = 0 AND T10_agency_collect.money >= $max)";
+            else
+                $moneys .= " OR (T10_agency_collect.money_flag = 0 AND T10_agency_collect.money >= $min AND T10_agency_collect.money <= $max)";
+        }
+    }
+}
+for ($i = 10000; $i <= 35000; $i += 5000) {
+    $min = 0;
+    $max = 0;
+    if ($i == 10000) {
+        $min = "less";
+        $max = 10000;
+    } else if ($i == 35000) {
+        $min = "more";
+        $max = 30001;
+    } else {
+        $min = $i - 4999;
+        $max = $i;
+    }
+    $moneyGet = "m_" . $min . "_" . $max;
+    if (isset($_GET[$moneyGet])) {
+        if ($moneys == "") {
+            if ($min == "less")
+                $moneys .= "((T10_agency_collect.money_flag = 1 AND T10_agency_collect.money <= $max)";
+            else if ($min == "more")
+                $moneys .= "((T10_agency_collect.money_flag = 1 AND T10_agency_collect.money >= $max)";
+            else
+                $moneys .= "((T10_agency_collect.money_flag = 1 AND T10_agency_collect.money >= $min AND T10_agency_collect.money <= $max)";
+        } else {
+            if ($min == "less")
+                $moneys .= " OR (T10_agency_collect.money_flag = 1 AND T10_agency_collect.money <= $max)";
+            else if ($min == "more")
+                $moneys .= " OR (T10_agency_collect.money_flag = 1 AND T10_agency_collect.money >= $max)";
+            else
+                $moneys .= " OR (T10_agency_collect.money_flag = 1 AND T10_agency_collect.money >= $min AND T10_agency_collect.money <= $max)";
+        }
+    }
+}
+
+if ($moneys != "") {
+    $moneys .= ")";
+    $term .= " AND " . $moneys;
+}

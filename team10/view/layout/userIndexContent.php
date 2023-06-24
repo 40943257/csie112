@@ -11,13 +11,16 @@ $sql .= " FROM T10_agency_info";
 
 if ($selectWithGov != "")
   $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
+
+if ($admission_types != "" || $moneys != "")
+  $sql .= " INNER JOIN T10_agency_collect ON T10_agency_collect.id = T10_agency_info.id";
   
 $sql .= " WHERE T10_agency_info.review = 1";
 
 if ($term != "")
   $sql .= " AND " . $term;
 
-if ($selectWithGov != "")
+if ($selectWithGov != "" || $admission_types != "")
   $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
 
 $sql .= " ORDER BY T10_agency_info.id DESC LIMIT $startIndex, $pageSize";

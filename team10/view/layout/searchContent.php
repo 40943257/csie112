@@ -13,10 +13,13 @@ $getParams = http_build_query($getParams);
 if ($getParams)
     $getParams = '&' . $getParams;
 
-$sql = "SELECT COUNT(*) as total FROM T10_agency_info";
+$sql = "SELECT COUNT(DISTINCT T10_agency_info.id) as total FROM T10_agency_info";
 
 if ($selectWithGov != "")
-  $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
+    $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
+
+if ($admission_types != "" || $moneys != "")
+    $sql .= " INNER JOIN T10_agency_collect ON T10_agency_collect.id = T10_agency_info.id";
 
 $sql .= " WHERE 1 = 1";
 
@@ -28,7 +31,7 @@ if ($fileName == 'myAgency.php')
 
 if ($fileName == "view" || $fileName == "index.php")
     $sql .= " AND T10_agency_info.review = '1'";
-  
+
 $result = mysqli_query($conn, $sql);
 $countRow = $result->fetch_assoc();
 $totalCount = $countRow['total'];
@@ -231,8 +234,8 @@ $endPage = min($totalPages, $page + 2);
                     </label>
                 </div>
                 <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="h_more_500" name="h_more_500">
-                    <label class="form-check-label" for="h_more_500">
+                    <input class="form-check-input" type="checkbox" id="h_more_501" name="h_more_501">
+                    <label class="form-check-label" for="h_more_501">
                         每小時501以上
                     </label>
                 </div>
@@ -240,12 +243,6 @@ $endPage = min($totalPages, $page + 2);
                     <input class="form-check-input" type="checkbox" id="m_less_10000" name="m_less_10000">
                     <label class="form-check-label" for="m_less_10000">
                         每月10000以下
-                    </label>
-                </div>
-                <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="m_10001_15000" name="m_10001_15000">
-                    <label class="form-check-label" for="m_10001_15000">
-                        每月10001~15000
                     </label>
                 </div>
                 <div class="form-check mx-1">
@@ -273,7 +270,7 @@ $endPage = min($totalPages, $page + 2);
                     </label>
                 </div>
                 <div class="form-check mx-1">
-                    <input class="form-check-input" type="checkbox" id="m_25001_30000" name="m_25001_30000">
+                    <input class="form-check-input" type="checkbox" id="m_more_30001" name="m_more_30001">
                     <label class="form-check-label" for="m_more_30001">
                         每月30001以上
                     </label>
