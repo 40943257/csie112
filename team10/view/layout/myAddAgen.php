@@ -1,7 +1,7 @@
 <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-10">
-                <form method="post" action="myAddAgentExe.php" class="mb-3" enctype="multipart/form-data">
+                <form method="post" action="myAddAgentExe.php" class="mb-3" enctype="multipart/form-data" id="agency">
                     <div class="row mb-3">
                         <div class="col">
                             <label for="name" class="form-label">機構名稱 <span>*</span></label>
@@ -96,12 +96,85 @@
                             </div>
                         </div>
                         <div class="col">
+                            <?php
+                                                                                                                            //收費
+                                for($i=0;$i<count($admission_type);$i+=2){
+                                    $Ch = $admission_type[$i];
+                                    $En = $admission_type[$i+1];
+
+                                    echo '<div class="mb-3" id="cost'.$En.'" style="display:none;">';
+                                    echo    '<label class="form-label">'.$Ch.'收費<span> *</span></label>';
+                                    echo    '<div class="row mb-3">';
+                                    echo        '<div class="col">';
+                                    echo            '<input type="number" class="form-control" name = "h_'.$En.'" placeholder="每小時收費" required>';
+                                    echo        '</div>';
+                                    echo        '<div class="col">';
+                                    echo            '<input type="number" class="form-control" name = "m_'.$En.'" placeholder="每月收費" required>';
+                                    echo        '</div>';
+                                    echo    '</div>';
+                                    echo '</div>';
+                                }                                
+                            ?>
                             <div class="mb-3">
                                 <label for="detailed" class="form-label">詳細描述</label>
                                 <textarea class="form-control" name = "detailed" id="detailed" rows="3"></textarea>
                             </div>
                         </div>
                     </div><!--end of row-->
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var dayCheckbox = document.getElementById('day');
+                            var stayCheckbox = document.getElementById('stay');
+                            var curingCheckbox = document.getElementById('curing');
+                            var divCostday = document.getElementById('costday');
+                            var divCostStay = document.getElementById('coststay');
+                            var divCostCuring = document.getElementById('costcuring');
+
+                            dayCheckbox.addEventListener('change', function() {
+                                if (dayCheckbox.checked) {
+                                    createInputs('day');
+                                } else {
+                                    removeInputs('day');
+                                }
+                            });
+
+                            stayCheckbox.addEventListener('change', function() {
+                                if (stayCheckbox.checked) {
+                                    createInputs('stay');
+                                } else {
+                                    removeInputs('stay');
+                                }
+                            });
+
+                            curingCheckbox.addEventListener('change', function() {
+                                if (curingCheckbox.checked) {
+                                    createInputs('curing');
+                                } else {
+                                    removeInputs('curing');
+                                }
+                            });
+
+                            function createInputs(type) {                       //顯示
+                                if(type === 'day')
+                                    divCostday.style.display = 'block';
+                                if(type === 'stay')
+                                    divCostStay.style.display = 'block';
+                                if(type === 'curing')
+                                    divCostCuring.style.display = 'block';
+                            }
+
+                            function removeInputs(type) {                       //隱藏
+                                if(type === 'day')
+                                    divCostday.style.display = 'none';
+                                if(type === 'stay')
+                                    divCostStay.style.display = 'none';
+                                if(type === 'curing')
+                                    divCostCuring.style.display = 'none';
+                            }
+                        });
+                    </script>
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">送出</button>
                     </div>
