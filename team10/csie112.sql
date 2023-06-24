@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： mariadb1
--- 產生時間： 2023 年 06 月 24 日 06:14
+-- 產生時間： 2023 年 06 月 24 日 08:45
 -- 伺服器版本： 10.7.8-MariaDB-1:10.7.8+maria~ubu2004
 -- PHP 版本： 8.0.15
 
@@ -34,6 +34,67 @@ CREATE TABLE `T10_agency_collect` (
   `money` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- 傾印資料表的資料 `T10_agency_collect`
+--
+
+INSERT INTO `T10_agency_collect` (`id`, `admission_type`, `money_flag`, `money`) VALUES
+(1, 'unnormal', 1, 42738),
+(2, 'unnormal', 0, 306),
+(3, 'unnormal', 1, 25496),
+(4, 'unnormal', 0, 939),
+(5, 'normal', 0, 719),
+(6, 'unnormal', 1, 45061),
+(7, 'normal', 0, 423),
+(8, 'unnormal', 1, 13599),
+(9, 'normal', 0, 288),
+(10, 'unnormal', 0, 645),
+(11, 'unnormal', 0, 991),
+(12, 'unnormal', 0, 956),
+(13, 'normal', 0, 315),
+(14, 'unnormal', 0, 320),
+(15, 'unnormal', 1, 31053),
+(16, 'normal', 1, 37243),
+(17, 'normal', 0, 568),
+(18, 'normal', 0, 413),
+(19, 'unnormal', 0, 729),
+(20, 'normal', 0, 450),
+(21, 'unnormal', 0, 965),
+(22, 'unnormal', 1, 36628),
+(23, 'normal', 1, 36257),
+(24, 'normal', 0, 944),
+(25, 'normal', 0, 837),
+(26, 'normal', 0, 457),
+(27, 'normal', 1, 38869),
+(28, 'normal', 1, 19310),
+(29, 'normal', 0, 633),
+(30, 'unnormal', 1, 48498),
+(31, 'normal', 0, 467),
+(32, 'unnormal', 0, 492),
+(33, 'normal', 1, 34100),
+(34, 'normal', 1, 15404),
+(35, 'unnormal', 0, 394),
+(36, 'normal', 1, 21964),
+(37, 'normal', 0, 208),
+(38, 'normal', 0, 327),
+(39, 'unnormal', 1, 14273),
+(40, 'normal', 0, 350),
+(41, 'unnormal', 1, 38357),
+(42, 'normal', 1, 28283),
+(43, 'unnormal', 0, 920),
+(44, 'normal', 0, 828),
+(45, 'unnormal', 0, 587),
+(46, 'normal', 0, 541),
+(47, 'normal', 1, 44215),
+(48, 'unnormal', 0, 395),
+(49, 'normal', 1, 36744),
+(50, 'unnormal', 1, 12680),
+(51, 'normal', 1, 27624),
+(52, 'unnormal', 1, 10134),
+(53, 'unnormal', 0, 660),
+(1, 'normal', 0, 300),
+(1, 'unnormal', 0, 350);
+
 -- --------------------------------------------------------
 
 --
@@ -63,10 +124,10 @@ INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `car
 (1, '', '冒險者之家', '王都東區', 912345678, 'stay', 6, 12, 123, '惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠', 'D:\\xampp\\htdocs\\ggit\\agency', 1),
 (2, '', '冒險者公會', '摩根帝國', 987654321, 'day', 14, 16, 30, '', '', 0),
 (4, 'account1', 'Agency 1', '嘉義縣', 1146259078, 'day', 89, 114, 9, 'Detailed info for Agency 1', 'image1.jpg', 1),
-(5, 'account2', 'Agency 2', '屏東縣', 1058124018, 'day', 93, 99, 1, 'Detailed info for Agency 2', 'image2.jpg', 1),
-(6, 'account3', 'Agency 3', '高雄市', 1303712713, 'curing', 15, 38, 4, 'Detailed info for Agency 3', 'image3.jpg', 0),
-(7, 'account4', 'Agency 4', '宜蘭縣', 5509129831, 'day', 90, 146, 9, 'Detailed info for Agency 4', 'image4.jpg', 1),
-(8, 'account5', 'Agency 5', '嘉義縣', 1099281867, 'day', 50, 51, 2, 'Detailed info for Agency 5', 'image5.jpg', 1),
+(5, 'account1', 'Agency 2', '屏東縣', 1058124018, 'day', 93, 99, 1, 'Detailed info for Agency 2', 'image2.jpg', 1),
+(6, 'account1', 'Agency 3', '高雄市', 1303712713, 'curing', 15, 38, 4, 'Detailed info for Agency 3', 'image3.jpg', 0),
+(7, 'account1', 'Agency 4', '宜蘭縣', 5509129831, 'day', 90, 146, 9, 'Detailed info for Agency 4', 'image4.jpg', 1),
+(8, 'account1', 'Agency 5', '嘉義縣', 1099281867, 'day', 50, 51, 2, 'Detailed info for Agency 5', 'image5.jpg', 1),
 (9, 'account6', 'Agency 6', '臺中市', 9853770269, 'day', 54, 154, 4, 'Detailed info for Agency 6', 'image6.jpg', 0),
 (10, 'account7', 'Agency 7', '屏東縣', 1537311004, 'curing', 33, 74, 3, 'Detailed info for Agency 7', 'image7.jpg', 1),
 (11, 'account8', 'Agency 8', '臺北市', 3320322895, 'curing', 5, 114, 3, 'Detailed info for Agency 8', 'image8.jpg', 0),
