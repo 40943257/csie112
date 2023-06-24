@@ -2,7 +2,7 @@
 // 計算資料的起始索引
 $startIndex = ($page - 1) * $pageSize;
 
-$sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
+$sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
 
 if ($selectWithGov != "")
   $sql .= ", GROUP_CONCAT(T10_cooperative.government SEPARATOR ', ') AS governments";
@@ -18,7 +18,7 @@ if ($term != "")
   $sql .= " AND " . $term;
 
 if ($selectWithGov != "")
-  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
+  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
 
 $sql .= " ORDER BY T10_agency_info.id DESC LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
@@ -40,7 +40,7 @@ foreach ($results as $result) {
       <div class="row mx-1 my-1 border border-dark align-items-center justify-content-center">
         <div class="col-md-2 col-12">
           <div class="ratio ratio-16x9">
-            <img class="bg-secondary">
+            <img class="bg-secondary" src="./image/src/'. $result["id"] . '/' . $result["main_image"] . '">
           </div>
         </div>
         <div class="col-md-10 col-12">
