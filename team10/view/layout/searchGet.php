@@ -24,9 +24,9 @@ $addresses = "";
 for ($i = 0; $i < count($gov); $i += 2) {
     if (isset($_GET[$gov[$i + 1]])) {
         if ($addresses == "")
-            $addresses .= "(T10_agency_info.address LIKE '%" . $gov[$i + 1] . "%'";
+            $addresses .= "(T10_agency_info.address LIKE '%" . $gov[$i] . "%'";
         else
-            $addresses .= " OR T10_agency_info.address LIKE '%" . $gov[$i + 1] . "%'";
+            $addresses .= " OR T10_agency_info.address LIKE '%" . $gov[$i] . "%'";
     }
 }
 
