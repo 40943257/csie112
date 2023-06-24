@@ -5,13 +5,13 @@ $name=$_POST["name"];                                       //機構名稱
 $phone=$_POST["phone"];                                     //聯絡電話
 $address=$_POST["address"];                                 //機構地址
                                                             //類型
-$admission_type = ['日照型','day','住宿型','stay','養護型','curing'];
-if(isset($_POST['admission_typeInput']))
-    $admission_typeInput = $_POST['admission_typeInput'];
-                                                            //長照對象
-$care_type = ['一般人','normal','精神障礙','unnormail'];
+$care_type = ['日照型','day','住宿型','stay','養護型','curing'];
 if(isset($_POST['care_typeInput']))
     $care_typeInput = $_POST['care_typeInput'];
+                                                            //長照對象
+$admission_type = ['一般人','normal','精神障礙','unnormal'];
+if(isset($_POST['admission_typeInput']))
+    $admission_typeInput = $_POST['admission_typeInput'];
 $start=$_POST["start"];$end=$_POST["end"];                  //最小最大年齡
 $people=$_POST["people"];                                   //核准收容人數
 include './layout/gov.php';                                 //政府
@@ -24,19 +24,19 @@ echo "機構名稱: $name <br>";
 echo "聯絡電話: $phone <br>";
 echo "機構地址: $address <br>";
 
-if(isset($admission_typeInput)){
+if(isset($care_typeInput)){
     echo "類型:<br>";
-    foreach($admission_typeInput as $admission_typeSelect){
-        echo "&emsp;{$admission_typeSelect}<br>";
+    foreach($care_typeInput as $care_typeSelect){
+        echo "&emsp;{$care_typeSelect}<br>";
     }    
 }else{
     echo "沒有選擇類型<br>";
 }
 
-if(isset($care_typeInput)){
+if(isset($admission_typeInput)){
     echo "長照對象:<br>";
-    foreach($care_typeInput as $care_typeInputSelect){
-        echo "&emsp;{$care_typeInputSelect}<br>";
+    foreach($admission_typeInput as $admission_typeSelect){
+        echo "&emsp;{$admission_typeSelect}<br>";
     }    
 }else{
     echo "沒有選擇長照對象<br>";
@@ -58,11 +58,11 @@ for($i=1;$i<count($admission_type);$i+=2){
     $admission_typeH = "h_{$admission_type["$i"]}";             //h_$English
     $admission_typeM = "m_{$admission_type["$i"]}";             //m_$English
 
-    if(isset($_POST["$admission_typeH"])){
+    if(!empty($_POST["$admission_typeH"])){
         $$admission_typeH = $_POST["$admission_typeH"];
         echo "{$admission_typeH}:{$$admission_typeH}<br>";
     }
-    if(isset($_POST["$admission_typeM"])){
+    if(!empty($_POST["$admission_typeM"])){
         $$admission_typeM = $_POST["$admission_typeM"];
         echo "{$admission_typeM}:{$$admission_typeM}<br>";
     }

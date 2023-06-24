@@ -46,12 +46,12 @@
                                     <label class="form-label">類型 <span>*</span></label>
                                     <?php
                                                                                                                                     //類型
-                                        $admission_type = ['日照型','day','住宿型','stay','養護型','curing'];
-                                        for($i=0; $i<count($admission_type); $i+=2){                                            //count() 讀取大小
-                                            $Ch = $admission_type[$i];
-                                            $En = $admission_type[$i+1];
+                                        $care_type = ['日照型','day','住宿型','stay','養護型','curing'];
+                                        for($i=0; $i<count($care_type); $i+=2){                                            //count() 讀取大小
+                                            $Ch = $care_type[$i];
+                                            $En = $care_type[$i+1];
                                             echo '<div class="form-check">';
-                                            echo    '<input class="form-check-input" type="checkbox" name="admission_typeInput[]" value="'.$En.'" id="'.$En.'">';
+                                            echo    '<input class="form-check-input" type="checkbox" name="care_typeInput[]" value="'.$En.'" id="'.$En.'">';
                                             echo    '<label class="form-check-label" for="'.$En.'">';
                                             echo        $Ch;
                                             echo    '</label>';
@@ -64,12 +64,12 @@
                                     <label class="form-label">長照對象 <span>*</span></label>
                                     <?php
                                                                                                                                     //長照對象
-                                        $care_type = ['一般人','normal','精神障礙','unnormail'];
-                                        for($i=0; $i<count($care_type); $i+=2){                                            //count() 讀取大小
-                                            $Ch = $care_type[$i];
-                                            $En = $care_type[$i+1];
+                                        $admission_type = ['一般人','normal','精神障礙','unnormail'];
+                                        for($i=0; $i<count($admission_type); $i+=2){                                            //count() 讀取大小
+                                            $Ch = $admission_type[$i];
+                                            $En = $admission_type[$i+1];
                                             echo '<div class="form-check">';
-                                            echo    '<input class="form-check-input" type="checkbox" name="care_typeInput[]" value="'.$En.'" id="'.$En.'">';
+                                            echo    '<input class="form-check-input" type="checkbox" name="admission_typeInput[]" value="'.$En.'" id="'.$En.'">';
                                             echo    '<label class="form-check-label" for="'.$En.'">';
                                             echo        $Ch;
                                             echo    '</label>';

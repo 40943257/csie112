@@ -27,12 +27,12 @@
                                     <label class="form-label">類型 <span>*</span></label>
                                     <?php
                                                                                                                                     //類型
-                                        $admission_type = ['日照型','day','住宿型','stay','養護型','curing'];
-                                        for($i=0; $i<count($admission_type); $i+=2){                                            //count() 讀取大小
-                                            $Ch = $admission_type[$i];
-                                            $En = $admission_type[$i+1];
+                                        $care_type = ['日照型','day','住宿型','stay','養護型','curing'];
+                                        for($i=0; $i<count($care_type); $i+=2){                                            //count() 讀取大小
+                                            $Ch = $care_type[$i];
+                                            $En = $care_type[$i+1];
                                             echo '<div class="form-check">';
-                                            echo    '<input class="form-check-input" type="checkbox" name="admission_typeInput[]" value="'.$En.'" id="'.$En.'">';
+                                            echo    '<input class="form-check-input" type="checkbox" name="care_typeInput[]" value="'.$En.'" id="'.$En.'">';
                                             echo    '<label class="form-check-label" for="'.$En.'">';
                                             echo        $Ch;
                                             echo    '</label>';
@@ -44,12 +44,12 @@
                                     <label class="form-label">長照對象 <span>*</span></label>
                                     <?php
                                                                                                                                     //長照對象
-                                        $care_type = ['一般人','normal','精神障礙','unnormail'];
-                                        for($i=0; $i<count($care_type); $i+=2){                                            //count() 讀取大小
-                                            $Ch = $care_type[$i];
-                                            $En = $care_type[$i+1];
+                                        $admission_type = ['一般人','normal','精神障礙','unnormal'];
+                                        for($i=0; $i<count($admission_type); $i+=2){                                            //count() 讀取大小
+                                            $Ch = $admission_type[$i];
+                                            $En = $admission_type[$i+1];
                                             echo '<div class="form-check">';
-                                            echo    '<input class="form-check-input" type="checkbox" name="care_typeInput[]" value="'.$En.'" id="'.$En.'">';
+                                            echo    '<input class="form-check-input" type="checkbox" name="admission_typeInput[]" value="'.$En.'" id="'.$En.'">';
                                             echo    '<label class="form-check-label" for="'.$En.'">';
                                             echo        $Ch;
                                             echo    '</label>';
@@ -106,10 +106,10 @@
                                     echo    '<label class="form-label">'.$Ch.'收費<span> *</span></label>';
                                     echo    '<div class="row mb-3">';
                                     echo        '<div class="col">';
-                                    echo            '<input type="number" class="form-control" name = "h_'.$En.'" placeholder="每小時收費" required>';
+                                    echo            '<input type="number" class="form-control" name = "h_'.$En.'" placeholder="每小時收費">';
                                     echo        '</div>';
                                     echo        '<div class="col">';
-                                    echo            '<input type="number" class="form-control" name = "m_'.$En.'" placeholder="每月收費" required>';
+                                    echo            '<input type="number" class="form-control" name = "m_'.$En.'" placeholder="每月收費">';
                                     echo        '</div>';
                                     echo    '</div>';
                                     echo '</div>';
@@ -124,53 +124,56 @@
 
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
-                            var dayCheckbox = document.getElementById('day');
-                            var stayCheckbox = document.getElementById('stay');
-                            var curingCheckbox = document.getElementById('curing');
-                            var divCostday = document.getElementById('costday');
-                            var divCostStay = document.getElementById('coststay');
-                            var divCostCuring = document.getElementById('costcuring');
+                            var normalCheckbox = document.getElementById('normal');
+                            var unnormalCheckbox = document.getElementById('unnormal');
+                            var divCostnormal = document.getElementById('costnormal');
+                            var divCostunnormal = document.getElementById('costunnormal');
 
-                            dayCheckbox.addEventListener('change', function() {
-                                if (dayCheckbox.checked) {
-                                    createInputs('day');
+                            var hNormalInput = document.getElementsByName('h_normal')[0];
+                            var mNormalInput = document.getElementsByName('m_normal')[0];
+                            var hUnnormalInput = document.getElementsByName('h_unnormal')[0];
+                            var mUnnormalInput = document.getElementsByName('m_unnormal')[0];
+
+                            normalCheckbox.addEventListener('change', function() {
+                                if (normalCheckbox.checked) {
+                                    createInputs('normal');
                                 } else {
-                                    removeInputs('day');
+                                    removeInputs('normal');
                                 }
                             });
 
-                            stayCheckbox.addEventListener('change', function() {
-                                if (stayCheckbox.checked) {
-                                    createInputs('stay');
+                            unnormalCheckbox.addEventListener('change', function() {
+                                if (unnormalCheckbox.checked) {
+                                    createInputs('unnormal');
                                 } else {
-                                    removeInputs('stay');
-                                }
-                            });
-
-                            curingCheckbox.addEventListener('change', function() {
-                                if (curingCheckbox.checked) {
-                                    createInputs('curing');
-                                } else {
-                                    removeInputs('curing');
+                                    removeInputs('unnormal');
                                 }
                             });
 
                             function createInputs(type) {                       //顯示
-                                if(type === 'day')
-                                    divCostday.style.display = 'block';
-                                if(type === 'stay')
-                                    divCostStay.style.display = 'block';
-                                if(type === 'curing')
-                                    divCostCuring.style.display = 'block';
+                                if(type === 'normal'){
+                                    divCostnormal.style.display = 'block';
+                                    hNormalInput.required = true;
+                                    mNormalInput.required = true;
+                                }
+                                if(type === 'unnormal'){
+                                    divCostunnormal.style.display = 'block';
+                                    hUnnormalInput.required = true;
+                                    mUnnormalInput.required = true;
+                                }
                             }
 
                             function removeInputs(type) {                       //隱藏
-                                if(type === 'day')
-                                    divCostday.style.display = 'none';
-                                if(type === 'stay')
-                                    divCostStay.style.display = 'none';
-                                if(type === 'curing')
-                                    divCostCuring.style.display = 'none';
+                                if(type === 'normal'){
+                                    divCostnormal.style.display = 'none';
+                                    hNormalInput.required = false;
+                                    mNormalInput.required = false;
+                                }
+                                if(type === 'unnormal'){
+                                    divCostunnormal.style.display = 'none';
+                                    hUnnormalInput.required = false;
+                                    mUnnormalInput.required = false;
+                                }
                             }
                         });
                     </script>
