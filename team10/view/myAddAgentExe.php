@@ -6,15 +6,18 @@ $phone=$_POST["phone"];                                     //聯絡電話
 $address=$_POST["address"];                                 //機構地址
                                                             //類型
 $admission_type = ['日照型','day','住宿型','stay','養護型','curing'];
-$admission_typeInput = $_POST['admission_typeInput'];
+if(isset($_POST['admission_typeInput']))
+    $admission_typeInput = $_POST['admission_typeInput'];
                                                             //長照對象
 $care_type = ['一般人','normal','精神障礙','unnormail'];
-$care_typeInput = $_POST['care_typeInput'];
+if(isset($_POST['care_typeInput']))
+    $care_typeInput = $_POST['care_typeInput'];
 $start=$_POST["start"];$end=$_POST["end"];                  //最小最大年齡
 $people=$_POST["people"];                                   //核准收容人數
 include './layout/gov.php';                                 //政府
 $gov;
-$govInput = $_POST['govInput'];
+if(isset($_POST['govInput']))
+    $govInput = $_POST['govInput'];
 $detailed=$_POST["detailed"];                               //詳細描述
 
 echo "機構名稱: $name <br>";
