@@ -21,6 +21,20 @@ if($selectWithGov != "") {
     $term .= " AND " . $selectWithGov;
 }
 
+$addresses = "";
+for ($i = 0; $i < count($gov); $i += 2) {
+    if(isset($_GET[$gov[$i + 1]])) {
+        if($addresses == "")
+            $addresses .= "(T10_agency_info.address LIKE '%" . $gov[$i + 1] . "%'";
+        else 
+            $addresses .= " OR T10_agency_info.address LIKE '%" . $gov[$i + 1] . "%'";
+    }
+}
+
+if($addresses != "") {
+    $addresses .= ")";
+    $term .= " AND " . $addresses;
+}
 
 $selectAges = "";
 for($i = 0; $i < 10; $i++) {
@@ -41,4 +55,29 @@ for($i = 0; $i < 10; $i++) {
 if($selectAges != "") {
     $selectAges .= ")";
     $term .= " AND " . $selectAges;
+}
+
+$care_type = "";
+if(isset($_GET["day"])) {
+    if($care_type == "") 
+        $care_type .= "(T10_agency_info.care_type = 'day'";
+    else 
+        $care_type .= " OR T10_agency_info.care_type = 'day'";
+}
+if(isset($_GET["stay"])) {
+    if($care_type == "") 
+        $care_type .= "(T10_agency_info.care_type = 'stay'";
+    else 
+        $care_type .= " OR T10_agency_info.care_type = 'stay'";
+}
+if(isset($_GET["curing"])) {
+    if($care_type == "") 
+        $care_type .= "(T10_agency_info.care_type = 'curing'";
+    else 
+        $care_type .= " OR T10_agency_info.care_type = 'curing'";
+}
+
+if($care_type != "") {
+    $care_type .= ")";
+    $term .= " AND " . $care_type;
 }
