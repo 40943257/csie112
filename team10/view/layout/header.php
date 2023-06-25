@@ -10,7 +10,7 @@ $user = 'user';
 if (isset($_SESSION["account"])) {
     $isLogin = true;
     if ($_SESSION["account"] == 'admin304') {
-        $user = 'root';
+        $user = 'admin304';
     }
     $account = $_SESSION["account"];
 }
@@ -72,7 +72,7 @@ $newUrl .= '?' . $newQuery;
                         echo ' active';
                     echo '" href="./myAgency.php" id="myAgency">我的機構</a>';
                     echo '</li>';
-                    if ($user == 'root') {
+                    if ($user == 'admin304') {
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1';
                         if ($fileName == 'reviewAgency.php')

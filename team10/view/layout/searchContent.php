@@ -299,7 +299,7 @@ $endPage = min($totalPages, $page + 2);
                 </div>
             ';
             }
-        } else if ($user == 'root') {
+        } else if ($user == 'admin304') {
             if ($fileName == 'view' || $fileName == 'index.php') {
                 include('./layout/rootIndex_agencyContent.php');
                 echo '  
@@ -309,6 +309,14 @@ $endPage = min($totalPages, $page + 2);
             ';
             } else if ($fileName == 'reviewAgency.php')
                 include('./layout/reviewAgency.php');
+            else if ($fileName == 'myAgency.php') {
+                include('./layout/rootIndex_agencyContent.php');
+                echo '  
+                    <div class="mx-1 my-1 d-flex align-items-center justify-content-center h-100">
+                        <button type="button" class="btn btn-success my-1" onclick="location.href=\'myAddAgenPage.php\'">新增</button>
+                    </div>
+                ';
+            }
         }
     } else {
         include('./layout/userIndexContent.php');
