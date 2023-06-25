@@ -2,7 +2,27 @@
 // 計算資料的起始索引
 $startIndex = ($page - 1) * $pageSize;
 
-$sql = "SELECT * FROM T10_agency_info LIMIT $startIndex, $pageSize";
+$sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.review";
+if ($selectWithGov != "")
+  $sql .= ", GROUP_CONCAT(T10_cooperative.government SEPARATOR ', ') AS governments";
+
+$sql .= " FROM T10_agency_info";
+
+if ($selectWithGov != "")
+  $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
+
+if ($admission_types != "" || $moneys != "")
+  $sql .= " INNER JOIN T10_agency_collect ON T10_agency_collect.id = T10_agency_info.id";
+  
+$sql .= " WHERE 1 =1";
+
+if ($term != "")
+  $sql .= " AND " . $term;
+
+if ($selectWithGov != "" || $admission_types != "")
+  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
+
+$sql .= " ORDER BY T10_agency_info.id DESC LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
 
 foreach ($results as $result) {
