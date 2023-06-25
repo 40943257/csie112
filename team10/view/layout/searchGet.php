@@ -56,29 +56,29 @@ if ($selectAges != "") {
     $term .= " AND " . $selectAges;
 }
 
-$care_type = "";
+$care_types = "";
 if (isset($_GET["day"])) {
-    if ($care_type == "")
-        $care_type .= "(T10_agency_info.care_type = 'day'";
+    if ($care_types == "")
+        $care_types .= "(T10_agency_care_type.care_type = 'day'";
     else
-        $care_type .= " OR T10_agency_info.care_type = 'day'";
+        $care_types .= " OR T10_agency_care_type.care_type = 'day'";
 }
 if (isset($_GET["stay"])) {
-    if ($care_type == "")
-        $care_type .= "(T10_agency_info.care_type = 'stay'";
+    if ($care_types == "")
+        $care_types .= "(T10_agency_care_type.care_type = 'stay'";
     else
-        $care_type .= " OR T10_agency_info.care_type = 'stay'";
+        $care_types .= " OR T10_agency_care_type.care_type = 'stay'";
 }
 if (isset($_GET["curing"])) {
-    if ($care_type == "")
-        $care_type .= "(T10_agency_info.care_type = 'curing'";
+    if ($care_types == "")
+        $care_types .= "(T10_agency_care_type.care_type = 'curing'";
     else
-        $care_type .= " OR T10_agency_info.care_type = 'curing'";
+        $care_types .= " OR T10_agency_care_type.care_type = 'curing'";
 }
 
-if ($care_type != "") {
-    $care_type .= ")";
-    $term .= " AND " . $care_type;
+if ($care_types != "") {
+    $care_types .= ")";
+    $term .= " AND " . $care_types;
 }
 
 $admission_types = "";

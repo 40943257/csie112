@@ -18,6 +18,9 @@ $sql = "SELECT COUNT(DISTINCT T10_agency_info.id) as total FROM T10_agency_info"
 if ($selectWithGov != "")
     $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
 
+if ($care_types != "")
+    $sql .= " INNER JOIN T10_agency_care_type ON T10_agency_care_type.id = T10_agency_info.id";
+
 if ($admission_types != "" || $moneys != "")
     $sql .= " INNER JOIN T10_agency_collect ON T10_agency_collect.id = T10_agency_info.id";
 

@@ -11,16 +11,19 @@ $sql .= " FROM T10_agency_info";
 if ($selectWithGov != "")
   $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
 
+if ($care_types != "")
+  $sql .= " INNER JOIN T10_agency_care_type ON T10_agency_care_type.id = T10_agency_info.id";
+
 if ($admission_types != "" || $moneys != "")
   $sql .= " INNER JOIN T10_agency_collect ON T10_agency_collect.id = T10_agency_info.id";
-  
+
 $sql .= " WHERE 1 =1";
 
 if ($term != "")
   $sql .= " AND " . $term;
 
-if ($selectWithGov != "" || $admission_types != "")
-  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
+if ($selectWithGov != "" || $admission_types != "" || $care_types != "")
+  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
 $sql .= " ORDER BY T10_agency_info.id DESC LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
@@ -31,7 +34,7 @@ foreach ($results as $result) {
   $ansaa = $result["review"];
   $id = $result["id"];
   $star = '無';
-  $value="value";
+  $value = "value";
   $ansaa = " ";
   $sql = "SELECT ROUND(AVG(num_of_star), 1) as average_star FROM T10_comment WHERE id = $id";
   $starResult = mysqli_query($conn, $sql);
@@ -43,10 +46,10 @@ foreach ($results as $result) {
   }
 
   $sql = "SELECT review FROM T10_agency_info";
-    $resulta = $conn->query($sql);
-      if ($resulta->num_rows > 0) {
-        $row = $resulta->fetch_assoc();
-  $isChecked = (bool) $row['review'];
+  $resulta = $conn->query($sql);
+  if ($resulta->num_rows > 0) {
+    $row = $resulta->fetch_assoc();
+    $isChecked = (bool) $row['review'];
   }
   echo ' 
       <div class="row mx-1 my-1 border border-dark d-flex align-items-center justify-content-center">
@@ -65,30 +68,31 @@ foreach ($results as $result) {
               <p class="my-2 line-clamp-4">' . $result["detailed"] . '</p>
             </div>
          ';
-         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          if(isset($_POST["$id"])==true){
-             $ansaa = trim($_POST["$id"]);
-              $id = $_POST["id"];
-             // echo "$id";
-              $sql_query= "UPDATE T10_agency_info set review = '$ansaa' where id= '$id' ";
-              $result = mysqli_query($link, $sql_query);
-          }}
-         echo'
-            <form name="table" method="post" >
-            <div class="form-check">
-              <input class="form-check-input" type="radio" value="0" name="' . $id . '" ' . ($ansaa ? '' : 'checked review="0"') . ' >
-              <label class="form-check-label" for="flexRadioDefault1">
-                未審核
-             </label>
-            </div>
-              <div class="form-check">
-              <input class="form-check-input" type="radio" value="1"name="' . $id . '" ' . ($ansaa ? 'checked review="1"' : '') . ' >
-              <label class="form-check-label" >
-                已審核
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["$id"]) == true) {
+      $ansaa = trim($_POST["$id"]);
+      $id = $_POST["id"];
+      // echo "$id";
+      $sql_query = "UPDATE T10_agency_info set review = '$ansaa' where id= '$id' ";
+      $result = mysqli_query($link, $sql_query);
+    }
+  }
+  echo '
+        <form name="table" method="post" >
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="0" name="' . $id . '" ' . ($ansaa ? '' : 'checked review="0"') . ' >
+            <label class="form-check-label" for="flexRadioDefault1">
+              未審核
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" value="1"name="' . $id . '" ' . ($ansaa ? 'checked review="1"' : '') . ' >
+            <label class="form-check-label" >
+              已審核
             </label>';
-            
-            
-              echo'
+
+
+  echo '
             </div>
             <div class="form-button ">
                     <button type="sudmit" class="btn btn-success my-1" name="write" >更改</button>
@@ -99,12 +103,4 @@ foreach ($results as $result) {
         </div>
       </div>
   ';
-  //onclick="location.href=\'test2.php\'"action="test2.php"
-}?>
-
-<?php
-
-?>
-
-
-
+}

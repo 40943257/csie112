@@ -2,7 +2,7 @@
 // 計算資料的起始索引
 $startIndex = ($page - 1) * $pageSize;
 
-$sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
+$sql = "SELECT T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
 if ($selectWithGov != "")
   $sql .= ", GROUP_CONCAT(T10_cooperative.government SEPARATOR ', ') AS governments";
@@ -12,16 +12,19 @@ $sql .= " FROM T10_agency_info";
 if ($selectWithGov != "")
   $sql .= " INNER JOIN T10_cooperative ON T10_cooperative.id = T10_agency_info.id";
 
+if ($care_types != "")
+  $sql .= " INNER JOIN T10_agency_care_type ON T10_agency_care_type.id = T10_agency_info.id";
+
 if ($admission_types != "" || $moneys != "")
   $sql .= " INNER JOIN T10_agency_collect ON T10_agency_collect.id = T10_agency_info.id";
-  
+
 $sql .= " WHERE T10_agency_info.review = 1";
 
 if ($term != "")
   $sql .= " AND " . $term;
 
-if ($selectWithGov != "" || $admission_types != "")
-  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed, T10_agency_info.main_image";
+if ($selectWithGov != "" || $admission_types != "" || $care_types != "")
+  $sql .= " GROUP By T10_agency_info.id, T10_agency_info.name, T10_agency_info.address, T10_agency_info.detailed";
 
 $sql .= " ORDER BY T10_agency_info.id DESC LIMIT $startIndex, $pageSize";
 $results = mysqli_query($conn, $sql);
@@ -43,7 +46,7 @@ foreach ($results as $result) {
       <div class="row mx-1 my-1 border border-dark align-items-center justify-content-center">
         <div class="col-md-2 col-12">
           <div class="ratio ratio-16x9">
-            <img class="bg-secondary" src="./image/src/'. $result["id"] . '/' . $result["main_image"] . '">
+            <img class="bg-secondary" src="">
           </div>
         </div>
         <div class="col-md-10 col-12">
