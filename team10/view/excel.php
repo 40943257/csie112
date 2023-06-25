@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 $conn = require_once "./layout/config.php";
 include('./layout/gov.php');
 
