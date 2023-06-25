@@ -121,20 +121,35 @@
       <div class="col-6 text-center ">
         <h3>機構圖片</h3>
         <div class="ratio ratio-16x9">
-          <img id="img" class="img-fluid img-thumbnail" src="./test.gif" alt="機構沒圖片">
+          <?php
+            $sql = "SELECT main_image FROM T10_agency_info WHERE id = '$agency_id'";
+            $result = $link->query($sql);
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  $priority=$row['main_image'];
+                  echo "圖片名稱為{$priority}";
+                } 
+            }
+          ?>
+          <img id="img" class="img-fluid img-thumbnail" src="../image/agency/<?php echo $agency_id; ?>/<?php echo $priority; ?>.png" alt="機構沒圖片">
         </div>
         <!-- 頁數按鈕 -->
         <?php
         //獲取總筆數
-          $totalCountQuery = "SELECT COUNT(*) AS total FROM T10_agency_info WHERE id = $agency_id";
-          $totalCountResult = $link->query($totalCountQuery);
-          $totalCountRow = $totalCountResult->fetch_assoc();
-          $totalCount = $totalCountRow['total'];
-          echo $totalCount;
+          $fileContent = "D:/xampp/htdocs/agency/csie112-main/csie112-main/team10/image/agency/{$agency_id}/*.png";
+          $fileContent = glob($fileContent);
+          // 使用 for 迴圈遍歷檔案列表
+          for ($i = 0; $i < count($fileContent); $i++) {
+              $fcname = $fileContent[$i];
+              $fcname = basename($fcname);
+              echo $fcname;
+          }
+          $imgnum=count($fileContent);
+          echo $priority;
         ?>
         <div id="pagination">
           <script>
-            totalCount = 3
+            let totalCount =<?php echo $imgnum;?>;
             pagination = document.getElementById("pagination")
             for(i=1;i<=totalCount;i=i+1)
             {
@@ -143,7 +158,7 @@
               pagibutton.classList.add("btn", "btn-outline-primary"); // 添加 CSS class
               pagibutton.onclick = function() {
                 var img = document.getElementById("img")
-                img.src = "./test" + this.innerText + ".png";
+                img.src = "../image/agency/"+<?php echo $agency_id; ?>+"/" + this.innerText + ".png";
               }
               pagination.appendChild(pagibutton); // 將按鈕添加到頁數按鈕容器中
             }
