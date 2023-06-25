@@ -46,7 +46,7 @@
   <h1>表格匯入（請使用 CSV 格式檔）</h1>
   <form method="post" enctype="multipart/form-data"><BR>
   <input type="file" id="csv_file" name="csv_file" accept=".csv"><br><br>
-    <button type="submit" style="width:150px;height:50px;">匯入</button>
+    <button type="submit" style="width:150px;height:50px;">匯入</button><BR><BR>
   </form>
 
   <?php
@@ -78,7 +78,13 @@
 
        
         $sql = "INSERT INTO t10_agency_info (account, name, address, phone, start, end, people, detailed, review) VALUES ('$column1', '$column2', '$column3', '$column4', '$column6', '$column7', '$column8', '$column9', '$column10')";
-        $sql = "INSERT INTO t10_agency_care_type (care_type) VALUES ('$column5')";
+        
+        if ($conn->query($sql) === TRUE) {
+        } else {
+          echo "插入失敗: " . $conn->error . "<br>";
+        }
+        $id = mysqli_insert_id($conn);
+        $sql = "INSERT INTO t10_agency_care_type (id, care_type) VALUES ('$id', '$column5')";
         if ($conn->query($sql) === TRUE) {
           echo "插入成功<br>";
         } else {
