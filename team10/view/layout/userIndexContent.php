@@ -46,7 +46,7 @@ foreach ($results as $result) {
       <div class="row mx-1 my-1 border border-dark align-items-center justify-content-center">
         <div class="col-md-2 col-12">
           <div class="ratio ratio-16x9">
-            <img class="bg-secondary" src="">
+            <img class="bg-secondary" src="../image/agency/' . $result["id"] . '/0.png">
           </div>
         </div>
         <div class="col-md-10 col-12">
