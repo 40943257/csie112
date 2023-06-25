@@ -117,6 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         function_alert('無法DELETE T10_agency_collect!<br>');
     }
 
+    if(isset($admission_typeInput))
     for($i=0;$i<count($store_admission_typeInput);$i+=1){
         $admission_typeH = "h_{$store_admission_typeInput["$i"]}";             //h_$English
         $admission_typeM = "m_{$store_admission_typeInput["$i"]}";             //m_$English
@@ -203,7 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 function function_alert($message) { 
     // Display the alert box  
     echo "<script>alert('$message');
-        window.location.href='myAddAgenPage.php';
+        window.location.href='myAgency.php';
     </script>"; 
     return false;
 }
