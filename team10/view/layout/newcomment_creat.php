@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
         <div class='container'>
           <div class='row'>
             <div class='row d-flex align-items-baseline '>
-            <div class='d-flex align-items-baseline '>{$row['name']}這似乎是人名</div>";
+            <div class='d-flex align-items-baseline '>{$row['name']}</div>";
       // echo "<p>{$row['user_id']}</p>";
       wrstart($row['num_of_star']); // 輸出：★★★★★
       echo " " . date('Y-m-d', strtotime($row['date'])) . "</div> 

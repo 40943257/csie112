@@ -23,7 +23,7 @@
     {
     //INSERT INTO your_table_name (user_id, num_of_start, date, comment)VALUES (4, 2, NOW(), '惠惠');
     // 插入使用者留言account num_of_start date comment
-    $sql = "INSERT INTO t10_comment (account, num_of_star, date, comment, id) VALUES ('{$_SESSION['account']}', '$num_of_start', NOW(), '$comment', $agency_id)";
+    $sql = "INSERT INTO T10_comment (account, num_of_star, date, comment, id) VALUES ('{$_SESSION['account']}', '$num_of_start', NOW(), '$comment', $agency_id)";
 
 
     // 執行 SQL 插入語句

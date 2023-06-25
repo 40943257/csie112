@@ -98,7 +98,6 @@
       function getAgencytype($agencyName, $link) {
         $sql = "SELECT * FROM T10_agency_care_type WHERE id = '$agencyName'";
         $result = $link->query($sql);
-        echo $result->num_rows;
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
               if($row['care_type']=='stay')
