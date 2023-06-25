@@ -40,7 +40,7 @@
 <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-10">
-                <form method="post" action="myUpdateAgnt.php" class="mb-3" enctype="multipart/form-data">
+                <form method="post" action="myUpdateAgent.php" class="mb-3" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?php echo $id; ?>">
                     <div class="row mb-3">
                                                                                                             <!-- 機構名稱 -->

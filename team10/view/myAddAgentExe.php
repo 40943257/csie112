@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         move_uploaded_file($tmpName, $newFileName);         // 將暫存檔案移動到目標資料夾中
     }
 
-    echo "圖片上傳完成";
+    function_alert('上傳完成，請等待管理員審核');
 
 }else{
     function_alert("Not Post Method! How Dare You?");
@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 function function_alert($message) { 
     // Display the alert box  
     echo "<script>alert('$message');
-        //window.location.href='myAddAgenPage.php';
+        window.location.href='myAddAgenPage.php';
     </script>"; 
     return false;
 }
