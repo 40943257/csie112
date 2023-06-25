@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-    
-    body {
-      margin-top: 10px;
-      text-align: center;
-    }
-    h1 {
-      background-color: #0d6efd; 
-      
-    }
-    button{border:0;
-     background-color:#0d6efd;
-    color:#000;
-    border-radius:10px;
-    cursor:pointer;}
 
-    button:hover{
-    color:#0d6efd;
-    background-color:#fff;
-    border:2px #0d6efd solid;
-    }
-
-
-    input{border:0;
-     background-color:#0d6efd;
-    color:#000;
-    border-radius:20px;
-    cursor:pointer;}
-
-    input:hover{
-    color:#0d6efd;
-    background-color:#fff;
-    border:2px #0d6efd solid;
-    }
-    
-    
-    
-  </style>
-</head>
-<body>
     
   <h1>表格匯入（請使用 CSV 格式檔）</h1>
   <form method="post" enctype="multipart/form-data"><BR>
@@ -101,5 +58,3 @@
 
   $conn->close();
   ?>
-</body>
-</html>
