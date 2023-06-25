@@ -101,7 +101,19 @@
         echo $result->num_rows;
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-               echo " " . $row['care_type'] . " ";
+              if($row['care_type']=='stay')
+              {
+                echo " 住宿型 ";
+              }
+              if($row['care_type']=='day')
+              {
+                echo " 日照型 ";
+              }
+              if($row['care_type']=='curing')
+              {
+                echo " 養護型 ";
+              }
+              //  echo " " . $row['care_type'] . " ";
             }
         }
       }
@@ -285,7 +297,7 @@
           </div>
         </div>
         <div class="row" style="height: 300;">
-          <div class="col  text-center bg-info p-2 text-dark bg-opacity-25">
+          <div class="col   bg-info p-2 text-dark bg-opacity-10">
             <p class="">詳細資訊:<br><?php getAgencyInfo("detailed",$post_agency,$link);?>
             </p>
           </div>
