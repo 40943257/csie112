@@ -40,9 +40,52 @@
         $result = $link->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo " " . $row[$info] . " ";
+               echo " " . $row[$info] . " ";
             }
         }
+      }    
+      function getAgencygov($info,$agencyName, $link) {
+        include('./layout/gov.php');
+        $sql = "SELECT $info FROM T10_cooperative WHERE id = '$agencyName'";
+        $result = $link->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              for($i=0;$i<count($gov);$i++)
+              {
+                if($row[$info]==$gov[$i])
+                {
+                  echo " " . $gov[$i-1] . " ";
+                }
+              }
+                // echo " " . $row[$info] . " ";
+            }
+        }
+      }
+      function getAgencycollect($info,$agencyName, $link) {
+        $sql = "SELECT * FROM T10_agency_collect WHERE id = '$agencyName'";
+        $result = $link->query($sql);
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo "<div class='row'>
+            <div class='col  bg-info p-1 text-dark bg-opacity-10'>
+              <p class=''>收治類型:";
+              //////////////////顯示內容
+              echo " " . $row[$info] . " ";
+              echo " " . $row['money'] . " ";
+              if($row['money_flag']=='1')
+              {
+                echo "/月";
+              }
+              else
+              {
+                echo "/天";
+              }
+              //////////////////
+              echo  "</p>
+                </div>
+              </div>" ;
+            }
+        }    
       }
       global $commentresult;
       function wrstart($num_of_start) {
@@ -185,16 +228,8 @@
             <p class="">連絡電話:<?php getAgencyInfo("phone",$post_agency,$link);?></p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-3  bg-info p-1 text-dark bg-opacity-10">
-            <p class="">收治類型:</p>
-          </div>
-          <div class="col-1 ">
-          </div>
-          <div class="col-3  bg-info p-1 text-dark bg-opacity-10">
-            <p class="">對象:</p>
-          </div>
-        </div>
+        <?php getAgencycollect("admission_type",$agency_id,$link);?>
+
         <div class="row ">
           <div class="col-3  bg-info p-1 text-dark bg-opacity-25">
             <p class="">收治年紀:<?php getAgencyInfo("start",$post_agency,$link);?>-<?php getAgencyInfo("end",$post_agency,$link);?></p>
@@ -206,8 +241,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-7  bg-info p-2 text-dark bg-opacity-10">
-            <p class="">縣市政府合作:</p>
+          <div class="col  bg-info p-2 text-dark bg-opacity-10">
+            <p class="">縣市政府合作:<?php getAgencygov("government",$agency_id,$link);?></p>
           </div>
         </div>
         <div class="row" style="height: 300;">
