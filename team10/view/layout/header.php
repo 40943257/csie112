@@ -74,7 +74,10 @@ $newUrl .= '?' . $newQuery;
                     echo '</li>';
                     if ($user == 'root') {
                         echo '<li class="nav-item">';
-                        echo '<a class="btn btn-primary mx-1 my-1" href="#" id="check">審核</a>';
+                        echo '<a class="btn btn-primary mx-1 my-1';
+                        if ($fileName == 'reviewAgency.php')
+                            echo ' active';
+                        echo '" href="reviewAgency.php" id="check">審核</a>';
                         echo '</li>';
                         echo '<li class="nav-item">';
                         echo '<a class="btn btn-primary mx-1 my-1" href="#" id="excelImport">excel匯入資料</a>';

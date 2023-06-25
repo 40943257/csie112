@@ -307,7 +307,8 @@ $endPage = min($totalPages, $page + 2);
                     <button type="button" class="btn btn-success my-1" onclick="location.href=\'myAddAgenPage.php\'">新增</button>
                 </div>
             ';
-            }
+            } else if ($fileName == 'reviewAgency.php')
+                include('./layout/reviewAgency.php');
         }
     } else {
         include('./layout/userIndexContent.php');
