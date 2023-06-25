@@ -77,14 +77,14 @@
         $column11 = $conn->real_escape_string($data[10]);
 
        
-        $sql = "INSERT INTO t10_agency_info (account, name, address, phone, start, end, people, detailed, review) VALUES ('$column1', '$column2', '$column3', '$column4', '$column6', '$column7', '$column8', '$column9', '$column10')";
+        $sql = "INSERT INTO T10_agency_info (account, name, address, phone, start, end, people, detailed, review) VALUES ('$column1', '$column2', '$column3', '$column4', '$column6', '$column7', '$column8', '$column9', '$column10')";
         
         if ($conn->query($sql) === TRUE) {
         } else {
           echo "插入失敗: " . $conn->error . "<br>";
         }
         $id = mysqli_insert_id($conn);
-        $sql = "INSERT INTO t10_agency_care_type (id, care_type) VALUES ('$id', '$column5')";
+        $sql = "INSERT INTO T10_agency_care_type (id, care_type) VALUES ('$id', '$column5')";
         if ($conn->query($sql) === TRUE) {
           echo "插入成功<br>";
         } else {
