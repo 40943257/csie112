@@ -54,6 +54,44 @@ $newUrl .= '?' . $newQuery;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/style.css">
     <script src="../script/script.js"></script>
+    <style>
+    
+    body {
+      margin-top: 10px;
+      text-align: center;
+    }
+    h1 {
+      background-color: #0d6efd; 
+      
+    }
+    button{border:0;
+     background-color:#0d6efd;
+    color:#000;
+    border-radius:10px;
+    cursor:pointer;}
+
+    button:hover{
+    color:#0d6efd;
+    background-color:#fff;
+    border:2px #0d6efd solid;
+    }
+
+
+    input{border:0;
+     background-color:#0d6efd;
+    color:#000;
+    border-radius:20px;
+    cursor:pointer;}
+
+    input:hover{
+    color:#0d6efd;
+    background-color:#fff;
+    border:2px #0d6efd solid;
+    }
+    
+    
+    
+  </style>
 </head>
 
 <body>
@@ -124,44 +162,6 @@ $newUrl .= '?' . $newQuery;
     <br>
     <br>
     <br>
-    <style>
-    
-    body {
-      margin-top: 10px;
-      text-align: center;
-    }
-    h1 {
-      background-color: #0d6efd; 
-      
-    }
-    button{border:0;
-     background-color:#0d6efd;
-    color:#000;
-    border-radius:10px;
-    cursor:pointer;}
-
-    button:hover{
-    color:#0d6efd;
-    background-color:#fff;
-    border:2px #0d6efd solid;
-    }
-
-
-    input{border:0;
-     background-color:#0d6efd;
-    color:#000;
-    border-radius:20px;
-    cursor:pointer;}
-
-    input:hover{
-    color:#0d6efd;
-    background-color:#fff;
-    border:2px #0d6efd solid;
-    }
-    
-    
-    
-  </style>
 
 <?php
 include('./layout/excel.php');
