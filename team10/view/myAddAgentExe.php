@@ -1,74 +1,91 @@
 <?php
+session_start();
 $conn=require_once "./layout/config.php";
- 
-$name=$_POST["name"];                                       //機構名稱
-$phone=$_POST["phone"];                                     //聯絡電話
-$address=$_POST["address"];                                 //機構地址
-                                                            //類型
-$care_type = ['日照型','day','住宿型','stay','養護型','curing'];
-if(isset($_POST['care_typeInput']))
-    $care_typeInput = $_POST['care_typeInput'];
-                                                            //長照對象
-$admission_type = ['一般人','normal','精神障礙','unnormal'];
-if(isset($_POST['admission_typeInput']))
-    $admission_typeInput = $_POST['admission_typeInput'];
-$start=$_POST["start"];$end=$_POST["end"];                  //最小最大年齡
-$people=$_POST["people"];                                   //核准收容人數
-include './layout/gov.php';                                 //政府
-$gov;
-if(isset($_POST['govInput']))
-    $govInput = $_POST['govInput'];
-$detailed=$_POST["detailed"];                               //詳細描述
 
-echo "機構名稱: $name <br>";
-echo "聯絡電話: $phone <br>";
-echo "機構地址: $address <br>";
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $account = $_SESSION["account"];
 
-if(isset($care_typeInput)){
-    echo "類型:<br>";
-    foreach($care_typeInput as $care_typeSelect){
-        echo "&emsp;{$care_typeSelect}<br>";
-    }    
-}else{
-    echo "沒有選擇類型<br>";
-}
+    $name=$_POST["name"];                                       //機構名稱
+    $phone=$_POST["phone"];                                     //聯絡電話
+    $address=$_POST["address"];                                 //機構地址
+                                                                //類型
+    $care_type = ['日照型','day','住宿型','stay','養護型','curing'];
+    if(isset($_POST['care_typeInput']))
+        $care_typeInput = $_POST['care_typeInput'];
+                                                                //長照對象
+    $admission_type = ['一般人','normal','精神障礙','unnormal'];
+    if(isset($_POST['admission_typeInput']))
+        $admission_typeInput = $_POST['admission_typeInput'];
+    $start=$_POST["start"];$end=$_POST["end"];                  //最小最大年齡
+    $people=$_POST["people"];                                   //核准收容人數
+    include './layout/gov.php';                                 //政府
+    $gov;
+    if(isset($_POST['govInput']))
+        $govInput = $_POST['govInput'];
+    $detailed=$_POST["detailed"];                               //詳細描述
 
-if(isset($admission_typeInput)){
-    echo "長照對象:<br>";
-    foreach($admission_typeInput as $admission_typeSelect){
-        echo "&emsp;{$admission_typeSelect}<br>";
-    }    
-}else{
-    echo "沒有選擇長照對象<br>";
-}
+    echo "機構名稱: $name <br>";
+    echo "聯絡電話: $phone <br>";
+    echo "機構地址: $address <br>";
 
-if(isset($govInput)){
-    echo "政府:<br>";
-    foreach($govInput as $govInputSelect){
-        echo "&emsp;{$govInputSelect}<br>";
-    }    
-}else{
-    echo "沒有選擇政府<br>";
-}
-
-echo "最小年齡: $start 最大年齡: $end <br>";
-echo "核准收容人數: $people <br>";
-
-for($i=1;$i<count($admission_type);$i+=2){
-    $admission_typeH = "h_{$admission_type["$i"]}";             //h_$English
-    $admission_typeM = "m_{$admission_type["$i"]}";             //m_$English
-
-    if(!empty($_POST["$admission_typeH"])){
-        $$admission_typeH = $_POST["$admission_typeH"];
-        echo "{$admission_typeH}:{$$admission_typeH}<br>";
+    if(isset($care_typeInput)){
+        echo "類型:<br>";
+        foreach($care_typeInput as $care_typeSelect){
+            echo "&emsp;{$care_typeSelect}<br>";
+        }    
+    }else{
+        echo "沒有選擇類型<br>";
     }
-    if(!empty($_POST["$admission_typeM"])){
-        $$admission_typeM = $_POST["$admission_typeM"];
-        echo "{$admission_typeM}:{$$admission_typeM}<br>";
-    }
-}
 
-echo "詳細描述: $detailed <br>";
+    if(isset($admission_typeInput)){
+        echo "長照對象:<br>";
+        foreach($admission_typeInput as $admission_typeSelect){
+            echo "&emsp;{$admission_typeSelect}<br>";
+        }    
+    }else{
+        echo "沒有選擇長照對象<br>";
+    }
+
+    if(isset($govInput)){
+        echo "政府:<br>";
+        foreach($govInput as $govInputSelect){
+            echo "&emsp;{$govInputSelect}<br>";
+        }    
+    }else{
+        echo "沒有選擇政府<br>";
+    }
+
+    echo "最小年齡: $start 最大年齡: $end <br>";
+    echo "核准收容人數: $people <br>";
+
+    for($i=1;$i<count($admission_type);$i+=2){
+        $admission_typeH = "h_{$admission_type["$i"]}";             //h_$English
+        $admission_typeM = "m_{$admission_type["$i"]}";             //m_$English
+
+        if(!empty($_POST["$admission_typeH"])){
+            $$admission_typeH = $_POST["$admission_typeH"];
+            echo "{$admission_typeH}:{$$admission_typeH}<br>";
+        }
+        if(!empty($_POST["$admission_typeM"])){
+            $$admission_typeM = $_POST["$admission_typeM"];
+            echo "{$admission_typeM}:{$$admission_typeM}<br>";
+        }
+    }
+
+    echo "詳細描述: $detailed <br>";
+                                                                    //T10_agency_info
+    $sql_T10_agency_info = "INSERT INTO T10_agency_info (account, name, address, phone, start, end, people, detailed, review)
+                                VALUES ('{$account}', '{$name}', '{$address}', '{$phone}', '{$start}', '{$end}', '{$people}', '{$detailed}', false)";
+    if(mysqli_query($conn,$sql_T10_agency_info)){   //檢查錯誤
+        echo "成功INSERT INTO T10_agency_info!<br>";
+    }
+    else{                                           //有誤
+        echo "無法INSERT INTO T10_agency_info!<br>"; 
+        echo mysqli_error($conn);
+    }
+}else{
+    function_alert("Not Post Method! How Dare You?");
+}
 
 // $sql = "INSERT INTO T10_user (account, name, password, email, phone) VALUES ('{$account}', '{$name}', '{$password_hash}', '{$mail}', '{$tel}')";
 

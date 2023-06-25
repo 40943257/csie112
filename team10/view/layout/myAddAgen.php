@@ -8,8 +8,8 @@
                             <input type="text" class="form-control" name = "name" id="name" required>
                         </div>
                         <div class="col">
-                            <label for="image_src" class="form-label">機構圖片</label>
-                            <input type="file" class="form-control" name="image_src[]" id="image_src" multiple>
+                            <label for="image_src" class="form-label">機構封面圖片 <span>*</span></label>
+                            <input type="file" class="form-control" name="image_src[]" id="image_src" required>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -115,6 +115,10 @@
                                     echo '</div>';
                                 }                                
                             ?>
+                            <div class="mb-3">
+                                <label for="image_src" class="form-label">機構圖片 <span>*</span></label>
+                                <input type="file" class="form-control" name="image_src[]" id="image_src" multiple required>
+                            </div>
                             <div class="mb-3">
                                 <label for="detailed" class="form-label">詳細描述</label>
                                 <textarea class="form-control" name = "detailed" id="detailed" rows="3"></textarea>

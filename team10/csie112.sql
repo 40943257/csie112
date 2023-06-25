@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： mariadb1
--- 產生時間： 2023 年 06 月 24 日 08:45
+-- 產生時間： 2023 年 06 月 25 日 07:05
 -- 伺服器版本： 10.7.8-MariaDB-1:10.7.8+maria~ubu2004
 -- PHP 版本： 8.0.15
 
@@ -24,14 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `T10_agency_care_type`
+--
+
+CREATE TABLE `T10_agency_care_type` (
+  `id` int(255) NOT NULL,
+  `care_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `T10_agency_collect`
 --
 
 CREATE TABLE `T10_agency_collect` (
-  `id` int(25) NOT NULL,
-  `admission_type` varchar(25) NOT NULL,
+  `id` int(255) NOT NULL,
+  `admission_type` varchar(255) NOT NULL,
   `money_flag` tinyint(1) NOT NULL,
-  `money` int(25) NOT NULL
+  `money` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -102,17 +113,15 @@ INSERT INTO `T10_agency_collect` (`id`, `admission_type`, `money_flag`, `money`)
 --
 
 CREATE TABLE `T10_agency_info` (
-  `id` int(25) NOT NULL,
-  `account` varchar(25) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `phone` bigint(20) NOT NULL,
-  `care_type` varchar(25) NOT NULL,
-  `start` int(11) NOT NULL,
-  `end` int(11) NOT NULL,
-  `people` int(11) NOT NULL,
+  `id` int(255) NOT NULL,
+  `account` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `start` int(255) NOT NULL,
+  `end` int(255) NOT NULL,
+  `people` int(255) NOT NULL,
   `detailed` varchar(255) NOT NULL,
-  `main_image` varchar(255) NOT NULL,
   `review` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -120,59 +129,59 @@ CREATE TABLE `T10_agency_info` (
 -- 傾印資料表的資料 `T10_agency_info`
 --
 
-INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `care_type`, `start`, `end`, `people`, `detailed`, `main_image`, `review`) VALUES
-(1, '', '冒險者之家', '王都東區', 912345678, 'stay', 6, 12, 123, '惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠', 'D:\\xampp\\htdocs\\ggit\\agency', 1),
-(2, '', '冒險者公會', '摩根帝國', 987654321, 'day', 14, 16, 30, '', '', 0),
-(4, 'account1', 'Agency 1', '嘉義縣', 1146259078, 'day', 89, 114, 9, 'Detailed info for Agency 1', 'image1.jpg', 1),
-(5, 'account1', 'Agency 2', '屏東縣', 1058124018, 'day', 93, 99, 1, 'Detailed info for Agency 2', 'image2.jpg', 1),
-(6, 'account1', 'Agency 3', '高雄市', 1303712713, 'curing', 15, 38, 4, 'Detailed info for Agency 3', 'image3.jpg', 0),
-(7, 'account1', 'Agency 4', '宜蘭縣', 5509129831, 'day', 90, 146, 9, 'Detailed info for Agency 4', 'image4.jpg', 1),
-(8, 'account1', 'Agency 5', '嘉義縣', 1099281867, 'day', 50, 51, 2, 'Detailed info for Agency 5', 'image5.jpg', 1),
-(9, 'account6', 'Agency 6', '臺中市', 9853770269, 'day', 54, 154, 4, 'Detailed info for Agency 6', 'image6.jpg', 0),
-(10, 'account7', 'Agency 7', '屏東縣', 1537311004, 'curing', 33, 74, 3, 'Detailed info for Agency 7', 'image7.jpg', 1),
-(11, 'account8', 'Agency 8', '臺北市', 3320322895, 'curing', 5, 114, 3, 'Detailed info for Agency 8', 'image8.jpg', 0),
-(12, 'account9', 'Agency 9', '南投縣', 2918332526, 'curing', 65, 124, 10, 'Detailed info for Agency 9', 'image9.jpg', 0),
-(13, 'account10', 'Agency 10', '台南市', 6415098335, 'day', 57, 178, 3, 'Detailed info for Agency 10', 'image10.jpg', 1),
-(14, 'account11', 'Agency 11', '台東縣', 3473158388, 'stay', 36, 179, 2, 'Detailed info for Agency 11', 'image11.jpg', 1),
-(15, 'account12', 'Agency 12', '宜蘭縣', 8711816848, 'stay', 31, 86, 10, 'Detailed info for Agency 12', 'image12.jpg', 0),
-(16, 'account13', 'Agency 13', '新北市', 2981625686, 'curing', 65, 127, 10, 'Detailed info for Agency 13', 'image13.jpg', 0),
-(17, 'account14', 'Agency 14', '臺北市', 1075099448, 'day', 33, 101, 1, 'Detailed info for Agency 14', 'image14.jpg', 1),
-(18, 'account15', 'Agency 15', '台南市', 8318086600, 'stay', 25, 183, 1, 'Detailed info for Agency 15', 'image15.jpg', 1),
-(19, 'account16', 'Agency 16', '澎湖縣', 6540896747, 'stay', 6, 14, 4, 'Detailed info for Agency 16', 'image16.jpg', 1),
-(20, 'account17', 'Agency 17', '新北市', 2791269491, 'day', 6, 23, 7, 'Detailed info for Agency 17', 'image17.jpg', 1),
-(21, 'account18', 'Agency 18', '澎湖縣', 7132602076, 'stay', 43, 121, 1, 'Detailed info for Agency 18', 'image18.jpg', 1),
-(22, 'account19', 'Agency 19', '南投縣', 9269745119, 'day', 53, 86, 8, 'Detailed info for Agency 19', 'image19.jpg', 0),
-(23, 'account20', 'Agency 20', '台東縣', 2099298949, 'day', 56, 156, 9, 'Detailed info for Agency 20', 'image20.jpg', 1),
-(24, 'account21', 'Agency 21', '桃園市', 1973468011, 'curing', 4, 155, 6, 'Detailed info for Agency 21', 'image21.jpg', 1),
-(25, 'account22', 'Agency 22', '臺中市', 3639837117, 'curing', 72, 119, 1, 'Detailed info for Agency 22', 'image22.jpg', 0),
-(26, 'account23', 'Agency 23', '新竹市', 4111192962, 'curing', 13, 57, 8, 'Detailed info for Agency 23', 'image23.jpg', 0),
-(27, 'account24', 'Agency 24', '連江縣', 9046693655, 'stay', 70, 143, 3, 'Detailed info for Agency 24', 'image24.jpg', 0),
-(28, 'account25', 'Agency 25', '臺中市', 4322792657, 'day', 63, 147, 6, 'Detailed info for Agency 25', 'image25.jpg', 1),
-(29, 'account26', 'Agency 26', '桃園市', 1708927165, 'curing', 18, 154, 3, 'Detailed info for Agency 26', 'image26.jpg', 0),
-(30, 'account27', 'Agency 27', '苗栗縣', 6659736456, 'stay', 73, 104, 6, 'Detailed info for Agency 27', 'image27.jpg', 0),
-(31, 'account28', 'Agency 28', '臺北市', 7614241529, 'day', 83, 104, 5, 'Detailed info for Agency 28', 'image28.jpg', 0),
-(32, 'account29', 'Agency 29', '嘉義縣', 6366976981, 'curing', 84, 198, 3, 'Detailed info for Agency 29', 'image29.jpg', 1),
-(33, 'account30', 'Agency 30', '澎湖縣', 4297738302, 'curing', 56, 180, 10, 'Detailed info for Agency 30', 'image30.jpg', 1),
-(34, 'account31', 'Agency 31', '澎湖縣', 7340441818, 'stay', 44, 162, 4, 'Detailed info for Agency 31', 'image31.jpg', 1),
-(35, 'account32', 'Agency 32', '南投縣', 7944815227, 'stay', 69, 156, 3, 'Detailed info for Agency 32', 'image32.jpg', 0),
-(36, 'account33', 'Agency 33', '臺中市', 2935343443, 'day', 54, 119, 6, 'Detailed info for Agency 33', 'image33.jpg', 0),
-(37, 'account34', 'Agency 34', '桃園市', 9234210767, 'curing', 47, 130, 2, 'Detailed info for Agency 34', 'image34.jpg', 0),
-(38, 'account35', 'Agency 35', '臺中市', 5670596229, 'stay', 96, 165, 3, 'Detailed info for Agency 35', 'image35.jpg', 1),
-(39, 'account36', 'Agency 36', '新竹縣', 5463752878, 'curing', 60, 177, 9, 'Detailed info for Agency 36', 'image36.jpg', 1),
-(40, 'account37', 'Agency 37', '臺北市', 7293063843, 'curing', 95, 132, 10, 'Detailed info for Agency 37', 'image37.jpg', 0),
-(41, 'account38', 'Agency 38', '桃園市', 5405113613, 'day', 65, 127, 7, 'Detailed info for Agency 38', 'image38.jpg', 0),
-(42, 'account39', 'Agency 39', '台東縣', 7943590694, 'curing', 53, 100, 1, 'Detailed info for Agency 39', 'image39.jpg', 0),
-(43, 'account40', 'Agency 40', '彰化縣', 5294810896, 'stay', 49, 100, 1, 'Detailed info for Agency 40', 'image40.jpg', 1),
-(44, 'account41', 'Agency 41', '新北市', 4172794108, 'curing', 24, 161, 8, 'Detailed info for Agency 41', 'image41.jpg', 0),
-(45, 'account42', 'Agency 42', '連江縣', 2989290787, 'stay', 27, 157, 6, 'Detailed info for Agency 42', 'image42.jpg', 0),
-(46, 'account43', 'Agency 43', '基隆市', 4766193681, 'day', 88, 162, 8, 'Detailed info for Agency 43', 'image43.jpg', 0),
-(47, 'account44', 'Agency 44', '屏東縣', 2694058545, 'day', 29, 139, 1, 'Detailed info for Agency 44', 'image44.jpg', 1),
-(48, 'account45', 'Agency 45', '嘉義市', 8822539870, 'stay', 4, 17, 2, 'Detailed info for Agency 45', 'image45.jpg', 1),
-(49, 'account46', 'Agency 46', '屏東縣', 6227431291, 'curing', 11, 68, 1, 'Detailed info for Agency 46', 'image46.jpg', 1),
-(50, 'account47', 'Agency 47', '連江縣', 5090812916, 'curing', 6, 160, 10, 'Detailed info for Agency 47', 'image47.jpg', 0),
-(51, 'account48', 'Agency 48', '苗栗縣', 1158130297, 'stay', 39, 193, 6, 'Detailed info for Agency 48', 'image48.jpg', 1),
-(52, 'account49', 'Agency 49', '南投縣', 7913213783, 'stay', 61, 145, 4, 'Detailed info for Agency 49', 'image49.jpg', 1),
-(53, 'account50', 'Agency 50', '嘉義市', 1161902367, 'day', 71, 74, 1, 'Detailed info for Agency 50', 'image50.jpg', 0);
+INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `start`, `end`, `people`, `detailed`, `review`) VALUES
+(1, '', '冒險者之家', '王都東區', '912345678', 6, 12, 123, '惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠惠', 1),
+(2, '', '冒險者公會', '摩根帝國', '987654321', 14, 16, 30, '', 0),
+(4, 'account1', 'Agency 1', '嘉義縣', '1146259078', 89, 114, 9, 'Detailed info for Agency 1', 1),
+(5, 'account1', 'Agency 2', '屏東縣', '1058124018', 93, 99, 1, 'Detailed info for Agency 2', 1),
+(6, 'account1', 'Agency 3', '高雄市', '1303712713', 15, 38, 4, 'Detailed info for Agency 3', 0),
+(7, 'account1', 'Agency 4', '宜蘭縣', '5509129831', 90, 146, 9, 'Detailed info for Agency 4', 1),
+(8, 'account1', 'Agency 5', '嘉義縣', '1099281867', 50, 51, 2, 'Detailed info for Agency 5', 1),
+(9, 'account6', 'Agency 6', '臺中市', '9853770269', 54, 154, 4, 'Detailed info for Agency 6', 0),
+(10, 'account7', 'Agency 7', '屏東縣', '1537311004', 33, 74, 3, 'Detailed info for Agency 7', 1),
+(11, 'account8', 'Agency 8', '臺北市', '3320322895', 5, 114, 3, 'Detailed info for Agency 8', 0),
+(12, 'account9', 'Agency 9', '南投縣', '2918332526', 65, 124, 10, 'Detailed info for Agency 9', 0),
+(13, 'account10', 'Agency 10', '台南市', '6415098335', 57, 178, 3, 'Detailed info for Agency 10', 1),
+(14, 'account11', 'Agency 11', '台東縣', '3473158388', 36, 179, 2, 'Detailed info for Agency 11', 1),
+(15, 'account12', 'Agency 12', '宜蘭縣', '8711816848', 31, 86, 10, 'Detailed info for Agency 12', 0),
+(16, 'account13', 'Agency 13', '新北市', '2981625686', 65, 127, 10, 'Detailed info for Agency 13', 0),
+(17, 'account14', 'Agency 14', '臺北市', '1075099448', 33, 101, 1, 'Detailed info for Agency 14', 1),
+(18, 'account15', 'Agency 15', '台南市', '8318086600', 25, 183, 1, 'Detailed info for Agency 15', 1),
+(19, 'account16', 'Agency 16', '澎湖縣', '6540896747', 6, 14, 4, 'Detailed info for Agency 16', 1),
+(20, 'account17', 'Agency 17', '新北市', '2791269491', 6, 23, 7, 'Detailed info for Agency 17', 1),
+(21, 'account18', 'Agency 18', '澎湖縣', '7132602076', 43, 121, 1, 'Detailed info for Agency 18', 1),
+(22, 'account19', 'Agency 19', '南投縣', '9269745119', 53, 86, 8, 'Detailed info for Agency 19', 0),
+(23, 'account20', 'Agency 20', '台東縣', '2099298949', 56, 156, 9, 'Detailed info for Agency 20', 1),
+(24, 'account21', 'Agency 21', '桃園市', '1973468011', 4, 155, 6, 'Detailed info for Agency 21', 1),
+(25, 'account22', 'Agency 22', '臺中市', '3639837117', 72, 119, 1, 'Detailed info for Agency 22', 0),
+(26, 'account23', 'Agency 23', '新竹市', '4111192962', 13, 57, 8, 'Detailed info for Agency 23', 0),
+(27, 'account24', 'Agency 24', '連江縣', '9046693655', 70, 143, 3, 'Detailed info for Agency 24', 0),
+(28, 'account25', 'Agency 25', '臺中市', '4322792657', 63, 147, 6, 'Detailed info for Agency 25', 1),
+(29, 'account26', 'Agency 26', '桃園市', '1708927165', 18, 154, 3, 'Detailed info for Agency 26', 0),
+(30, 'account27', 'Agency 27', '苗栗縣', '6659736456', 73, 104, 6, 'Detailed info for Agency 27', 0),
+(31, 'account28', 'Agency 28', '臺北市', '7614241529', 83, 104, 5, 'Detailed info for Agency 28', 0),
+(32, 'account29', 'Agency 29', '嘉義縣', '6366976981', 84, 198, 3, 'Detailed info for Agency 29', 1),
+(33, 'account30', 'Agency 30', '澎湖縣', '4297738302', 56, 180, 10, 'Detailed info for Agency 30', 1),
+(34, 'account31', 'Agency 31', '澎湖縣', '7340441818', 44, 162, 4, 'Detailed info for Agency 31', 1),
+(35, 'account32', 'Agency 32', '南投縣', '7944815227', 69, 156, 3, 'Detailed info for Agency 32', 0),
+(36, 'account33', 'Agency 33', '臺中市', '2935343443', 54, 119, 6, 'Detailed info for Agency 33', 0),
+(37, 'account34', 'Agency 34', '桃園市', '9234210767', 47, 130, 2, 'Detailed info for Agency 34', 0),
+(38, 'account35', 'Agency 35', '臺中市', '5670596229', 96, 165, 3, 'Detailed info for Agency 35', 1),
+(39, 'account36', 'Agency 36', '新竹縣', '5463752878', 60, 177, 9, 'Detailed info for Agency 36', 1),
+(40, 'account37', 'Agency 37', '臺北市', '7293063843', 95, 132, 10, 'Detailed info for Agency 37', 0),
+(41, 'account38', 'Agency 38', '桃園市', '5405113613', 65, 127, 7, 'Detailed info for Agency 38', 0),
+(42, 'account39', 'Agency 39', '台東縣', '7943590694', 53, 100, 1, 'Detailed info for Agency 39', 0),
+(43, 'account40', 'Agency 40', '彰化縣', '5294810896', 49, 100, 1, 'Detailed info for Agency 40', 1),
+(44, 'account41', 'Agency 41', '新北市', '4172794108', 24, 161, 8, 'Detailed info for Agency 41', 0),
+(45, 'account42', 'Agency 42', '連江縣', '2989290787', 27, 157, 6, 'Detailed info for Agency 42', 0),
+(46, 'account43', 'Agency 43', '基隆市', '4766193681', 88, 162, 8, 'Detailed info for Agency 43', 0),
+(47, 'account44', 'Agency 44', '屏東縣', '2694058545', 29, 139, 1, 'Detailed info for Agency 44', 1),
+(48, 'account45', 'Agency 45', '嘉義市', '8822539870', 4, 17, 2, 'Detailed info for Agency 45', 1),
+(49, 'account46', 'Agency 46', '屏東縣', '6227431291', 11, 68, 1, 'Detailed info for Agency 46', 1),
+(50, 'account47', 'Agency 47', '連江縣', '5090812916', 6, 160, 10, 'Detailed info for Agency 47', 0),
+(51, 'account48', 'Agency 48', '苗栗縣', '1158130297', 39, 193, 6, 'Detailed info for Agency 48', 1),
+(52, 'account49', 'Agency 49', '南投縣', '7913213783', 61, 145, 4, 'Detailed info for Agency 49', 1),
+(53, 'account50', 'Agency 50', '嘉義市', '1161902367', 71, 74, 1, 'Detailed info for Agency 50', 0);
 
 -- --------------------------------------------------------
 
@@ -181,11 +190,11 @@ INSERT INTO `T10_agency_info` (`id`, `account`, `name`, `address`, `phone`, `car
 --
 
 CREATE TABLE `T10_comment` (
-  `account` varchar(25) NOT NULL,
-  `num_of_star` int(11) NOT NULL,
+  `account` varchar(255) NOT NULL,
+  `num_of_star` int(255) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `comment` varchar(50) NOT NULL,
-  `id` int(25) NOT NULL
+  `comment` varchar(255) NOT NULL,
+  `id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -206,8 +215,8 @@ INSERT INTO `T10_comment` (`account`, `num_of_star`, `date`, `comment`, `id`) VA
 --
 
 CREATE TABLE `T10_cooperative` (
-  `id` int(25) NOT NULL,
-  `government` varchar(25) NOT NULL
+  `id` int(255) NOT NULL,
+  `government` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -234,7 +243,7 @@ CREATE TABLE `T10_user` (
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `phone` varchar(20) NOT NULL
+  `phone` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -273,7 +282,7 @@ ALTER TABLE `T10_user`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `T10_agency_info`
 --
 ALTER TABLE `T10_agency_info`
-  MODIFY `id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
