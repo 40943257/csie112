@@ -67,10 +67,18 @@
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
             echo "<div class='row'>
-            <div class='col  bg-info p-1 text-dark bg-opacity-10'>
+            <div class='col  bg-info p-1 text-dark bg-opacity-25'>
               <p class=''>收治類型:";
               //////////////////顯示內容
-              echo " " . $row[$info] . " ";
+              if($row[$info]=='unnormal')
+              {
+                echo " 精神病 ";
+              }
+              else
+              {
+                echo " 正常人 ";
+              }
+              // echo " " . $row[$info] . " ";
               echo " " . $row['money'] . " ";
               if($row['money_flag']=='1')
               {
@@ -86,6 +94,16 @@
               </div>" ;
             }
         }    
+      }
+      function getAgencytype($agencyName, $link) {
+        $sql = "SELECT * FROM T10_agency_care_type WHERE id = '$agencyName'";
+        $result = $link->query($sql);
+        echo $result->num_rows;
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+               echo " " . $row['care_type'] . " ";
+            }
+        }
       }
       global $commentresult;
       function wrstart($num_of_start) {
@@ -104,7 +122,7 @@
       $result = $link->query($sql);
       if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
-              echo " " . $row['name'] . " ";
+              // echo " " . $row['name'] . " ";
               $post_agency=$row['name'];
           }
       }
@@ -122,36 +140,37 @@
         <h3>機構圖片</h3>
         <div class="ratio ratio-16x9">
           <?php
-            $sql = "SELECT main_image FROM T10_agency_info WHERE id = '$agency_id'";
-            $result = $link->query($sql);
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                  $priority=$row['main_image'];
-                  echo "圖片名稱為{$priority}";
-                } 
-            }
+            // $sql = "SELECT main_image FROM T10_agency_info WHERE id = '$agency_id'";
+            // $result = $link->query($sql);
+            // if ($result->num_rows > 0) {
+            //     while ($row = $result->fetch_assoc()) {
+            //       $priority=$row['main_image'];
+            //       // echo "圖片名稱為{$priority}";
+            //     } 
+            // }
+            $priority='0';
           ?>
           <img id="img" class="img-fluid img-thumbnail" src="../image/agency/<?php echo $agency_id; ?>/<?php echo $priority; ?>.png" alt="機構沒圖片">
         </div>
         <!-- 頁數按鈕 -->
         <?php
         //獲取總筆數
-          $fileContent = "D:/xampp/htdocs/agency/csie112-main/csie112-main/team10/image/agency/{$agency_id}/*.png";
+          $fileContent = "../image/agency/{$agency_id}/*.png";
           $fileContent = glob($fileContent);
           // 使用 for 迴圈遍歷檔案列表
           for ($i = 0; $i < count($fileContent); $i++) {
               $fcname = $fileContent[$i];
               $fcname = basename($fcname);
-              echo $fcname;
+              // echo $fcname;
           }
           $imgnum=count($fileContent);
-          echo $priority;
+          // echo $priority;
         ?>
         <div id="pagination">
           <script>
             let totalCount =<?php echo $imgnum;?>;
             pagination = document.getElementById("pagination")
-            for(i=1;i<=totalCount;i=i+1)
+            for(i=0;i<=totalCount-1;i=i+1)
             {
               var pagibutton = document.createElement("button"); // 創建 <button> 元素
               pagibutton.textContent = i; // 設定按鈕內容為頁數
@@ -243,20 +262,25 @@
             <p class="">連絡電話:<?php getAgencyInfo("phone",$post_agency,$link);?></p>
           </div>
         </div>
+        <div class="row">
+          <div class="col-7  bg-info p-2 text-dark bg-opacity-10">
+            <p class="">類型:<?php getAgencytype($agency_id,$link);?></p>
+          </div>
+        </div>
         <?php getAgencycollect("admission_type",$agency_id,$link);?>
 
         <div class="row ">
-          <div class="col-3  bg-info p-1 text-dark bg-opacity-25">
+          <div class="col-3  bg-info p-1 text-dark bg-opacity-10">
             <p class="">收治年紀:<?php getAgencyInfo("start",$post_agency,$link);?>-<?php getAgencyInfo("end",$post_agency,$link);?></p>
           </div>
           <div class="col-1 ">
           </div>
-          <div class="col-3  bg-info p-1 text-dark bg-opacity-25">
+          <div class="col-3  bg-info p-1 text-dark bg-opacity-10">
             <p class="">收治人數:<?php getAgencyInfo("people",$post_agency,$link);?></p>
           </div>
         </div>
         <div class="row">
-          <div class="col  bg-info p-2 text-dark bg-opacity-10">
+          <div class="col  bg-info p-2 text-dark bg-opacity-25">
             <p class="">縣市政府合作:<?php getAgencygov("government",$agency_id,$link);?></p>
           </div>
         </div>
@@ -423,5 +447,5 @@
 // 關閉資料庫連接
 $link->close();
 
-echo "php end";
+// echo "php end";
 ?>
