@@ -40,7 +40,10 @@
     echo "收到的 radio 值：".$num_of_start;
     echo $account;
     // 重新導向到原始畫面
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    echo "<script>
+    window.history.back();
+</script>";
+    // header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit; // 確保在重定向後立即終止腳本執行
   }
   else
